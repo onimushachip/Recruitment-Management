@@ -1,9 +1,5 @@
-# IDE files
-#*
+#Ignore everything in this directories
+test/
 
-# Exclude
-!.js
-!.gitignore
-
-# ...even if they are in subdirectories
-#!test/*.js
+#Except
+#!src/testSub.js
