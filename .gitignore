@@ -1,5 +1,5 @@
 #Ignore everything in this directories
-test/
+(test/)
 
 #Except
 #!src/testSub.js
