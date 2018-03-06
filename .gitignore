@@ -1,6 +1,6 @@
 #Ignore everything in these directories
 #Brackets are for recursion
-(test/)
+test/
 
 #Except
 #!src/testSub.js
