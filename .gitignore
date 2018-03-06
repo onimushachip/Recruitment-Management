@@ -1,4 +1,5 @@
-#Ignore everything in this directories
+#Ignore everything in these directories
+#Brackets are for recursion
 (test/)
 
 #Except
