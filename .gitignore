@@ -13,5 +13,8 @@ Client/tsconfig.json
 Client/tslint.json
 Client/.gitignore
 
+#Server frameworks
+Server/node_modules
+
 #Except
 #!src/testSub.js
