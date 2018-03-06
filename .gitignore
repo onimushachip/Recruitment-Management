@@ -11,6 +11,7 @@ Client/protractor.conf.js
 Client/README.MD
 Client/tsconfig.json
 Client/tslint.json
+Client/.gitignore
 
 #Except
 #!src/testSub.js
