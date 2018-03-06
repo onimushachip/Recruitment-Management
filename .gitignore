@@ -1,6 +1,16 @@
 #Ignore everything in these directories
 #Brackets are for recursion
-test/
+Client/e2e
+Client/node_modules
+Client/.angular-cli.json
+Client/.editorconfig
+Client/karma.conf.js
+Client/package.json
+Client/package-lock.json
+Client/protractor.conf.js
+Client/README.MD
+Client/tsconfig.json
+Client/tslint.json
 
 #Except
 #!src/testSub.js
