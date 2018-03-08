@@ -70,6 +70,16 @@ app.post('/api/addJobPosting', function(req, res){
     });
 });
 
+//Add a user to the appicant collection - Isaac
+app.post('/api/addApplicant', function(req, res){
+    applicant.create(req.body, function(err, appli){
+        if(err)
+            res.send(err);
+        console.log(appli);
+        res.json(appli)
+    })
+})
+
 // Testing function to create the database using a POST request - Lam Nguyen
 app.post("/api/createDatabase", function(req, res) {
     console.log(req.body);
