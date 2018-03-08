@@ -76,9 +76,9 @@ app.post('/api/addApplicant', function(req, res){
         if(err)
             res.send(err);
         console.log(appli);
-        res.json(appli)
-    })
-})
+        res.json(appli);
+    });
+});
 
 // Testing function to create the database using a POST request - Lam Nguyen
 app.post("/api/createDatabase", function(req, res) {
