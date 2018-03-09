@@ -1,13 +1,13 @@
-//import JS Frameworks
+//Import JS Frameworks
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-// for auto-increment Applicant Id
+//Import auto-increment plugin
 var autoIncrement = require('mongoose-auto-increment');
 
-// Connecting to mongoDB server
+//Connecting to mongoDB server
 var connection = mongoose.createConnection("mongoDB://localhost/recruitmentDB");
 
 //Initialize auto-incrementation counter
@@ -26,7 +26,7 @@ app.use(function(req, res, next) {
 	next();
 });
 
-// Creating UserInfo Schema
+//Creating UserInfo Schema
 var userInfo = connection.model("UserInfo", Schema({
     _id: String,
     _userId: String,
@@ -40,7 +40,7 @@ var userInfo = connection.model("UserInfo", Schema({
     _id: false
 }));
 
-// Creating JobPostinfInfo Schema
+//Creating JobPostinfInfo Schema
 var jobPostingInfo = connection.model("JobPostingInfo", Schema({
     _id: String,
     _jobCode: String,
