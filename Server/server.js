@@ -1,11 +1,19 @@
+//import { Connection } from "mongoose";
+
 // imports
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
+// for auto-increment Applicant Id
+var autoIncrement = require('mongoose-auto-increment');
 
 // Connecting to mongoDB server
-mongoose.connect("mongoDB://localhost/recruitmentDB");
+var connection = mongoose.createConnection("mongoDB://localhost/recruitmentDB");
+
+
+autoIncrement.initialize(connection);
 
 // Using Body-Parser to get data from requests
 app.use(bodyParser.json());
@@ -20,35 +28,61 @@ app.use(function(req, res, next) {
 });
 
 // Creating UserInfo Schema
-var userInfo = mongoose.model("UserInfo", mongoose.Schema({
+var userInfo = connection.model("UserInfo", Schema({
+    _id: String,
     _userId: String,
     password: String,
     email: String,
     userType: String,
     firstName: String,
     lastName: String
+},
+{
+    _id: false
 }));
-
 // Creating JobPostinfInfo Schema
-var jobPostingInfo = mongoose.model("JobPostingInfo", mongoose.Schema({
+var jobPostingInfo = connection.model("JobPostingInfo", Schema({
+    _id: String,
     _jobCode: String,
     jobTitle: String,
     recruiterUserId: String,
     approval: String,
     exprience: String,
     skills: []
+},
+{
+    _id: false
 }));
 
 //Creating Applicant Schema
-var applicant = mongoose.model("Applicant", mongoose.Schema({
-    _applicantId: String,
+var applicantSchema = new Schema({
+    _applicantId: Number,
     firstName: String,
     lastName: String,
     email: String,
     experience: String,
     skills: [],
     recruiterUserId: String
-}));
+});
+var applicant = connection.model("applicant", applicantSchema);
+applicantSchema.plugin(autoIncrement.plugin, {
+    model: 'applicant',
+    field: '_applicantId',
+    startAt: 1
+});
+// var applicant = mongoose.model("Applicant", mongoose.Schema({
+//     _id: String,
+//     _applicantId: String,
+//     firstName: String,
+//     lastName: String,
+//     email: String,
+//     experience: String,
+//     skills: [],
+//     recruiterUserId: String
+// },
+// {
+//     _id: false
+// }));
 
 //Add a user to the userinfo collection - Thierno
 app.post('/api/addUserInfo', function(req, res){
