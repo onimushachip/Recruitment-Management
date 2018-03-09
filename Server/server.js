@@ -70,7 +70,29 @@ applicantSchema.plugin(autoIncrement.plugin, {
     field: '_applicantId',
     startAt: 1
 });
-
+// Update applicant by applicant ID 
+app.put('/api/updateApplicant/:_applicantId', function(req, res){
+    applicant.findOneAndUpdate({_applicantId:req.params._applicantId}, req.body,
+    function(err, applicant){
+        if (err) {
+           res.send(err); 
+        }
+        res.json(applicant);
+        console.log("Applicant"+applicant);
+    });
+});
+// Update job posting by job code ID 
+app.put('/api/jobPosting/:_jobCode', function(req, res){
+    console.log("Type: ID "+typeof(req.params._id));
+    jobPostingInfo.findOneAndUpdate({_jobCode:req.params._jobCode}, req.body,
+    function(err, job){
+        if (err) {
+           res.send(err); 
+        }
+        res.json(job);
+        console.log("Applicant"+job);
+    });
+});
 //Get a user from the userinfo collection - Andrew
 app.get('/api/getUserById/:id', function(req, res)
 {
