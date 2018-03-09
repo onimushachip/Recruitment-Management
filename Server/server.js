@@ -70,7 +70,7 @@ applicantSchema.plugin(autoIncrement.plugin, {
     field: '_applicantId',
     startAt: 1
 });
-// Update applicant by applicant ID 
+// Update applicant by applicant ID -Thierno
 app.put('/api/updateApplicant/:_applicantId', function(req, res){
     applicant.findOneAndUpdate({_applicantId:req.params._applicantId}, req.body,
     function(err, applicant){
@@ -81,7 +81,7 @@ app.put('/api/updateApplicant/:_applicantId', function(req, res){
         console.log("Applicant"+applicant);
     });
 });
-// Update job posting by job code ID 
+// Update job posting by job code ID -Thierno 
 app.put('/api/jobPosting/:_jobCode', function(req, res){
     console.log("Type: ID "+typeof(req.params._id));
     jobPostingInfo.findOneAndUpdate({_jobCode:req.params._jobCode}, req.body,
