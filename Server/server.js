@@ -116,7 +116,7 @@ app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
         numJobs = 0;
         for(i = 0; ((i<jobs.length)&&(numJobs <10));i++)
         {
-            if(title.ignoreCase === jobs[i].jobTitle.ignoreCase)
+            if(title.toLowerCase() === jobs[i].jobTitle.toLowerCase())
             {
                 matchingJobs.push(jobs[i]);
                 numJobs++;
