@@ -50,6 +50,51 @@ var applicant = mongoose.model("Applicant", mongoose.Schema({
     recruiterUserId: String
 }));
 
+//Get a user from the userinfo collection - Andrew
+app.get('/api/getUserById/:id', function(req, res)
+{
+    userInfo.findOne({_userId : req.params.id},function(err, user)
+    {
+        if(err)
+            res.send(err);
+        console.log(user);
+        res.json(user);
+    });
+});
+
+//Get list of users from userinfo - Andrew
+app.get('/api/getUsers/', function(req,res)
+{
+    userInfo.find(function(err, user)
+    {
+        if(err)
+            res.send(err);
+        console.log(user);
+        res.json(user);
+    });
+});
+
+//Get 10 job postings by Title - Andrew
+app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
+{
+    jobPostingInfo.find(function(err, jobs)
+    {
+        var title = req.params.jobTitle;
+        var matchingJobs = [];
+        numJobs = 0;
+        for(i = 0; ((i<jobs.length)&&(numJobs <10));i++)
+        {
+            if(title.ignoreCase === jobs[i].jobTitle.ignoreCase)
+            {
+                matchingJobs.push(jobs[i]);
+                numJobs++;
+            }
+        }
+        console.log(matchingJobs);
+        res.json(matchingJobs);
+    });
+});
+
 //Add a user to the userinfo collection - Thierno
 app.post('/api/addUserInfo', function(req, res){
     userInfo.create(req.body, function(err, usr){
