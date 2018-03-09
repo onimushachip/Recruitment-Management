@@ -1,17 +1,17 @@
-// imports
+//import JS Frameworks
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
-// Connecting to mongoDB server
+//Connecting to mongoDB server
 mongoose.connect("mongoDB://localhost/recruitmentDB");
 
-// Using Body-Parser to get data from requests
+//Using Body-Parser to get data from requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-// Enable CORS and request methods
+//Enable CORS and request methods
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 	next();
 });
 
-// Creating UserInfo Schema
+//Creating UserInfo Schema
 var userInfo = mongoose.model("UserInfo", mongoose.Schema({
     _userId: String,
     password: String,
@@ -29,7 +29,7 @@ var userInfo = mongoose.model("UserInfo", mongoose.Schema({
     lastName: String
 }));
 
-// Creating JobPostinfInfo Schema
+//Creating JobPostinfInfo Schema
 var jobPostingInfo = mongoose.model("JobPostingInfo", mongoose.Schema({
     _jobCode: String,
     jobTitle: String,
@@ -98,18 +98,22 @@ app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
 //Add a user to the userinfo collection - Thierno
 app.post('/api/addUserInfo', function(req, res){
     userInfo.create(req.body, function(err, usr){
-        if(err)
-            res.send(err); 
+        if (err) {
+            res.send(err);
+            return;
+        }
         console.log(usr);
         res.json(usr);
     });
 });
 
-//Add a user to the userinfo collection - Thierno
+//Add a job Posting to the JobPostinginfo collection - Thierno
 app.post('/api/addJobPosting', function(req, res){
     jobPostingInfo.create(req.body, function(err, job){
-        if(err)
-            res.send(err); 
+        if (err) {
+            res.send(err);
+            return;
+        } 
         console.log(job);
         res.json(job);
     });
@@ -118,14 +122,16 @@ app.post('/api/addJobPosting', function(req, res){
 //Add a user to the appicant collection - Isaac
 app.post('/api/addApplicant', function(req, res){
     applicant.create(req.body, function(err, appli){
-        if(err)
+        if (err) {
             res.send(err);
+            return;
+        }
         console.log(appli);
         res.json(appli);
     });
 });
 
-// Testing function to create the database using a POST request - Lam Nguyen
+//Testing function to create the database using a POST request - Lam Nguyen
 app.post("/api/createDatabase", function(req, res) {
     console.log(req.body);
     var newUser = {
@@ -145,7 +151,7 @@ app.post("/api/createDatabase", function(req, res) {
         "skills" : ["Java", "SQL"]
     }
     userInfo.create(newUser, function(err, user) {
-        if(err)
+        if (err)
             res.send(err);
         console.log("test function checked!");    
     });
@@ -156,6 +162,7 @@ app.post("/api/createDatabase", function(req, res) {
     });
     res.send("req completed!");
 });
+
 //Start the API server
 app.listen(3000, function() {
     console.log("Recruitment Server is up!!!");
