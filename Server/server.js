@@ -195,7 +195,7 @@ app.post("/api/createDatabase", function(req, res) {
     res.send("req completed!");
 });
 
-//find applicant by id - Isaac
+//Find an applicant by id - Isaac
 app.get('/api/applicants/:_applicantId', function(req, res){
     console.log(req.params._applicantId);
     applicant.find({_applicantId:req.params._applicantId}, function(err, appli){
@@ -205,7 +205,7 @@ app.get('/api/applicants/:_applicantId', function(req, res){
     });
 });
 
-//search applicant by firstName - Isaac
+//Search applicants by firstName - Isaac
 app.get('/api/applicants/searchFirstName/:firstName', function(req, res){
     applicant.find(function(err, firstNameSearch)
     {
@@ -233,10 +233,10 @@ app.get('/api/applicants/searchFirstName/:firstName', function(req, res){
         }
         console.log(sameFirstName);
         res.json(sameFirstName);
-});
+    });
 });
 
-//search applicant by LastName - Isaac
+//Search applicants by LastName - Isaac
 app.get('/api/applicants/searchLastName/:lastName', function(req, res){
     applicant.find(function(err, lastNameSearch)
     {
@@ -264,7 +264,7 @@ app.get('/api/applicants/searchLastName/:lastName', function(req, res){
         }
         console.log(sameLastName);
         res.json(sameLastName);
-});
+    });
 });
 
 //Start the API server
