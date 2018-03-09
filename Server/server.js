@@ -56,7 +56,10 @@ app.get('/api/getUserById/:id', function(req, res)
     userInfo.findOne({_userId : req.params.id},function(err, user)
     {
         if(err)
+        {
             res.send(err);
+            return;
+        }
         console.log(user);
         res.json(user);
     });
@@ -68,7 +71,10 @@ app.get('/api/getUsers/', function(req,res)
     userInfo.find(function(err, user)
     {
         if(err)
+        {
             res.send(err);
+            return;
+        }
         console.log(user);
         res.json(user);
     });
@@ -79,6 +85,11 @@ app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
 {
     jobPostingInfo.find(function(err, jobs)
     {
+        if(err)
+        {
+            res.send(err);
+            return;
+        }
         var title = req.params.jobTitle;
         var matchingJobs = [];
         numJobs = 0;
