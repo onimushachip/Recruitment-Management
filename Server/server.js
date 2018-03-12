@@ -47,7 +47,7 @@ var jobPostingInfo = connection.model("JobPostingInfo", Schema({
     jobTitle: String,
     recruiterUserId: String,
     approval: String,
-    exprience: String,
+    exprience: Number,
     skills: []
 },
 {
@@ -60,7 +60,7 @@ var applicantSchema = new Schema({
     firstName: String,
     lastName: String,
     email: String,
-    experience: String,
+    experience: Number,
     skills: [],
     recruiterUserId: String
 });
