@@ -149,6 +149,30 @@ app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
     });
 });
 
+// Remove applicant by applicant id for authorized recruiters. Thierno
+app.delete('/api/removeApplicant', function(req, res){
+    var _applicantId = req.body._applicantId;
+    var recruiterUserId = req.body.recruiterUserId;   
+
+    applicant.findOne(_applicantId, function(err, appli){
+        if (err) {
+            res.send(err);
+            return;
+        }
+        if(appli.recruiterUserId === recruiterUserId){
+            applicant.findOneAndRemove(recruiterUserId, function(err, a){
+                if(err)
+                    res.send(err);
+                res.json(a);
+            });
+        }else{
+            res.send("You are not authorized to remove applicant "+_applicantId);
+        }
+
+    });
+    
+});
+
 //Add a user to the userinfo collection - Thierno
 app.post('/api/addUserInfo', function(req, res){
     userInfo.create(req.body, function(err, usr){
@@ -288,6 +312,7 @@ app.get('/api/applicants/searchLastName/:lastName', function(req, res){
         res.json(sameLastName);
     });
 });
+
 //get List of Applicant Id's that match with specified JobId - Andrew
 app.get('/api/getApplicants/:jobId',function (req,res)
 {
@@ -334,6 +359,44 @@ app.get('/api/getApplicants/:jobId',function (req,res)
         });
     });
 });
+
+//Delete a Job Posting - Lam Nguyen
+app.delete('/api/deleteJobPosting/', function(req, res) {
+    var _jobCode = req.body._jobCode;
+    var recruiterUserId = req.body.recruiterUserId;
+    var desiredDoc = {
+        _jobCode,
+        recruiterUserId
+    };
+
+    console.log(desiredDoc);
+    
+    jobPostingInfo.findOneAndRemove(desiredDoc, function (err, deletedJobPosting) {
+        if (err) {
+            console.log("Error happened!");
+            res.send(err);
+            return;
+        }
+        if (deletedJobPosting == null) {
+            res.send("cannot delete the specified record because you are not authorized");
+            return;
+        }
+        res.json(deletedJobPosting);
+        // res.send("deletedJobPosting successed!");
+    });
+});
+
+//delete user by userId -- Isaac
+app.delete('/api/deleteUser/', function(req, res){
+    var _userId = req.body._userId;
+    var deleteUser = {_userId};
+    userInfo.findOneAndRemove(_userId, function(err, deleteUs){
+        if(err)
+            res.send(err);
+        res.json(deleteUs);
+    });
+});
+
 //Start the API server
 app.listen(3000, function() {
     console.log("Recruitment Server is up!!!");
