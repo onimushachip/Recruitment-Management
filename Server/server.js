@@ -267,6 +267,32 @@ app.get('/api/applicants/searchLastName/:lastName', function(req, res){
     });
 });
 
+//Delete a Job Posting - Lam Nguyen
+app.delete('/api/deleteJobPosting/', function(req, res) {
+    var _jobCode = req.body._jobCode;
+    var recruiterUserId = req.body.recruiterUserId;
+    var desiredDoc = {
+        _jobCode,
+        recruiterUserId
+    };
+
+    console.log(desiredDoc);
+    
+    jobPostingInfo.findOneAndRemove(desiredDoc, function (err, deletedJobPosting) {
+        if (err) {
+            console.log("Error happened!");
+            res.send(err);
+            return;
+        }
+        if (deletedJobPosting == null) {
+            res.send("cannot delete the specified record because you are not authorized");
+            return;
+        }
+        res.json(deletedJobPosting);
+        // res.send("deletedJobPosting successed!");
+    });
+});
+
 //Start the API server
 app.listen(3000, function() {
     console.log("Recruitment Server is up!!!");
