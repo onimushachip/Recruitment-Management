@@ -70,7 +70,29 @@ applicantSchema.plugin(autoIncrement.plugin, {
     field: '_applicantId',
     startAt: 1
 });
-
+// Update applicant by applicant ID -Thierno
+app.put('/api/updateApplicant/:_applicantId', function(req, res){
+    applicant.findOneAndUpdate({_applicantId:req.params._applicantId}, req.body,
+    function(err, applicant){
+        if (err) {
+           res.send(err); 
+        }
+        res.json(applicant);
+        console.log("Applicant"+applicant);
+    });
+});
+// Update job posting by job code ID -Thierno 
+app.put('/api/jobPosting/:_jobCode', function(req, res){
+    console.log("Type: ID "+typeof(req.params._id));
+    jobPostingInfo.findOneAndUpdate({_jobCode:req.params._jobCode}, req.body,
+    function(err, job){
+        if (err) {
+           res.send(err); 
+        }
+        res.json(job);
+        console.log("Applicant"+job);
+    });
+});
 //Get a user from the userinfo collection - Andrew
 app.get('/api/getUserById/:id', function(req, res)
 {
@@ -116,7 +138,7 @@ app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
         numJobs = 0;
         for(i = 0; ((i<jobs.length)&&(numJobs <10));i++)
         {
-            if(title.ignoreCase === jobs[i].jobTitle.ignoreCase)
+            if(title.toLowerCase() === jobs[i].jobTitle.toLowerCase())
             {
                 matchingJobs.push(jobs[i]);
                 numJobs++;
@@ -193,6 +215,78 @@ app.post("/api/createDatabase", function(req, res) {
         console.log("test2 function checked!");
     });
     res.send("req completed!");
+});
+
+//Find an applicant by id - Isaac
+app.get('/api/applicants/:_applicantId', function(req, res){
+    console.log(req.params._applicantId);
+    applicant.find({_applicantId:req.params._applicantId}, function(err, appli){
+        if(err)
+            res.send(err);
+        res.json(appli);
+    });
+});
+
+//Search applicants by firstName - Isaac
+app.get('/api/applicants/searchFirstName/:firstName', function(req, res){
+    applicant.find(function(err, firstNameSearch)
+    {
+        if(err)
+        {
+            res.send(err);
+            return;
+        }
+        var firstName = req.params.firstName;
+        console.log(firstName);
+        console.log(firstNameSearch.length);
+        var sameFirstName = [];
+        var numFirstName = 0;
+        for(var i = 0; i<firstNameSearch.length;i++)
+        {
+            if(numFirstName == 10){
+                break;
+            }
+            var temp = firstNameSearch[i].firstName;
+            if(firstName.toLowerCase() === temp.toLowerCase())
+            {
+                sameFirstName.push(firstNameSearch[i]);
+                numFirstName++;
+            }
+        }
+        console.log(sameFirstName);
+        res.json(sameFirstName);
+    });
+});
+
+//Search applicants by LastName - Isaac
+app.get('/api/applicants/searchLastName/:lastName', function(req, res){
+    applicant.find(function(err, lastNameSearch)
+    {
+        if(err)
+        {
+            res.send(err);
+            return;
+        }
+        var lastName = req.params.lastName;
+        console.log(lastName);
+        console.log(lastNameSearch.length);
+        var sameLastName = [];
+        var numLastName = 0;
+        for(var i = 0; i<lastNameSearch.length;i++)
+        {
+            if(numLastName == 10){
+                break;
+            }
+            var temp = lastNameSearch[i].lastName;
+            if(lastName.toLowerCase() === temp.toLowerCase())
+            {
+                sameLastName.push(lastNameSearch[i]);
+                numLastName++;
+            }
+        }
+        console.log(sameLastName);
+        res.json(sameLastName);
+    });
 });
 
 //Start the API server
