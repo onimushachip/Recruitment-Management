@@ -70,7 +70,29 @@ applicantSchema.plugin(autoIncrement.plugin, {
     field: '_applicantId',
     startAt: 1
 });
-
+// Update applicant by applicant ID -Thierno
+app.put('/api/updateApplicant/:_applicantId', function(req, res){
+    applicant.findOneAndUpdate({_applicantId:req.params._applicantId}, req.body,
+    function(err, applicant){
+        if (err) {
+           res.send(err); 
+        }
+        res.json(applicant);
+        console.log("Applicant"+applicant);
+    });
+});
+// Update job posting by job code ID -Thierno 
+app.put('/api/jobPosting/:_jobCode', function(req, res){
+    console.log("Type: ID "+typeof(req.params._id));
+    jobPostingInfo.findOneAndUpdate({_jobCode:req.params._jobCode}, req.body,
+    function(err, job){
+        if (err) {
+           res.send(err); 
+        }
+        res.json(job);
+        console.log("Applicant"+job);
+    });
+});
 //Get a user from the userinfo collection - Andrew
 app.get('/api/getUserById/:id', function(req, res)
 {
@@ -125,6 +147,30 @@ app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
         console.log(matchingJobs);
         res.json(matchingJobs);
     });
+});
+
+// Remove applicant by applicant id for authorized recruiters. Thierno
+app.delete('/api/removeApplicant', function(req, res){
+    var _applicantId = req.body._applicantId;
+    var recruiterUserId = req.body.recruiterUserId;   
+
+    applicant.findOne(_applicantId, function(err, appli){
+        if (err) {
+            res.send(err);
+            return;
+        }
+        if(appli.recruiterUserId === recruiterUserId){
+            applicant.findOneAndRemove(recruiterUserId, function(err, a){
+                if(err)
+                    res.send(err);
+                res.json(a);
+            });
+        }else{
+            res.send("You are not authorized to remove applicant "+_applicantId);
+        }
+
+    });
+    
 });
 
 //Add a user to the userinfo collection - Thierno
