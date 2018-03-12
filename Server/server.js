@@ -339,6 +339,17 @@ app.delete('/api/deleteJobPosting/', function(req, res) {
     });
 });
 
+//delete user by userId -- Isaac
+app.delete('/api/deleteUser/', function(req, res){
+    var _userId = req.body._userId;
+    var deleteUser = {_userId};
+    userInfo.findOneAndRemove(_userId, function(err, deleteUs){
+        if(err)
+            res.send(err);
+        res.json(deleteUs);
+    });
+});
+
 //Start the API server
 app.listen(3000, function() {
     console.log("Recruitment Server is up!!!");
