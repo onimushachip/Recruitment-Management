@@ -149,6 +149,30 @@ app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
     });
 });
 
+// Remove applicant by applicant id for authorized recruiters. Thierno
+app.delete('/api/removeApplicant', function(req, res){
+    var _applicantId = req.body._applicantId;
+    var recruiterUserId = req.body.recruiterUserId;   
+
+    applicant.findOne(_applicantId, function(err, appli){
+        if (err) {
+            res.send(err);
+            return;
+        }
+        if(appli.recruiterUserId === recruiterUserId){
+            applicant.findOneAndRemove(recruiterUserId, function(err, a){
+                if(err)
+                    res.send(err);
+                res.json(a);
+            });
+        }else{
+            res.send("You are not authorized to remove applicant "+_applicantId);
+        }
+
+    });
+    
+});
+
 //Add a user to the userinfo collection - Thierno
 app.post('/api/addUserInfo', function(req, res){
     userInfo.create(req.body, function(err, usr){
