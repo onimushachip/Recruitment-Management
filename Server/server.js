@@ -133,12 +133,12 @@ app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
             res.send(err);
             return;
         }
-        var title = req.params.jobTitle;
+        var title = req.params.jobTitle.toLowerCase();
         var matchingJobs = [];
         numJobs = 0;
         for(i = 0; ((i<jobs.length)&&(numJobs <10));i++)
         {
-            if(title.toLowerCase() === jobs[i].jobTitle.toLowerCase())
+            if(title === jobs[i].jobTitle.toLowerCase())
             {
                 matchingJobs.push(jobs[i]);
                 numJobs++;
@@ -288,7 +288,52 @@ app.get('/api/applicants/searchLastName/:lastName', function(req, res){
         res.json(sameLastName);
     });
 });
-
+//get List of Applicant Id's that match with specified JobId - Andrew
+app.get('/api/getApplicants/:jobId',function (req,res)
+{
+    jobPostingInfo.findOne({_id:req.params.jobId},function(err,job)
+    {
+        if(err)
+        {
+            res.send(err);
+            return;
+        }
+        matchingApplicants = [];
+        applicant.find(function(err, applicants)
+        {
+            if(err)
+            {
+                res.send(err);
+                return;
+            }
+            applicants.forEach((app,x)=>
+            {
+                console.log(app);
+                console.log(job);
+                var matchingSkills = 0;
+                app.skills.forEach((appSkill, y) =>
+                {
+                    console.log(appSkill);
+                    job.skills.forEach((jobSkill, z) =>
+                    {
+                        console.log(jobSkill);
+                        if(jobSkill.toLowerCase() === appSkill.toLowerCase())
+                        {
+                            matchingSkills++;
+                            console.log(matchingSkills);
+                        }
+                    });
+                });
+                if(matchingSkills === job.skills.length)
+                {
+                    matchingApplicants.push(app);
+                    console.log(matchingApplicants);
+                }
+            });
+            res.json(matchingApplicants);
+        });
+    });
+});
 //Start the API server
 app.listen(3000, function() {
     console.log("Recruitment Server is up!!!");
