@@ -122,7 +122,18 @@ app.get('/api/getUsers/', function(req,res)
         res.json(user);
     });
 });
-
+//Get 1 job by id - Andrew
+app.get('/api/getJobById/:id',function(req,res)
+{
+    jobPostingInfo.findOne({_id : req.params.id},function(err,job){
+        if(err)
+        {
+            res.send(err);
+            return;
+        }
+        res.json(job);
+    });
+});
 //Get 10 job postings by Title - Andrew
 app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
 {
