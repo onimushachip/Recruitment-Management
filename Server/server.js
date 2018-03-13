@@ -47,7 +47,7 @@ var jobPostingInfo = connection.model("JobPostingInfo", Schema({
     jobTitle: String,
     recruiterUserId: String,
     approval: String,
-    exprience: String,
+    exprience: Number,
     skills: []
 },
 {
@@ -60,7 +60,7 @@ var applicantSchema = new Schema({
     firstName: String,
     lastName: String,
     email: String,
-    experience: String,
+    experience: Number,
     skills: [],
     recruiterUserId: String
 });
@@ -70,6 +70,7 @@ applicantSchema.plugin(autoIncrement.plugin, {
     field: '_applicantId',
     startAt: 1
 });
+
 // Update applicant by applicant ID -Thierno
 app.put('/api/updateApplicant/:_applicantId', function(req, res){
     applicant.findOneAndUpdate({_applicantId:req.params._applicantId}, req.body,
@@ -81,6 +82,7 @@ app.put('/api/updateApplicant/:_applicantId', function(req, res){
         console.log("Applicant"+applicant);
     });
 });
+
 // Update job posting by job code ID -Thierno 
 app.put('/api/jobPosting/:_jobCode', function(req, res){
     console.log("Type: ID "+typeof(req.params._id));
@@ -93,6 +95,7 @@ app.put('/api/jobPosting/:_jobCode', function(req, res){
         console.log("Applicant"+job);
     });
 });
+
 //Get a user from the userinfo collection - Andrew
 app.get('/api/getUserById/:id', function(req, res)
 {
@@ -324,6 +327,16 @@ app.get('/api/applicants/searchLastName/:lastName', function(req, res){
     });
 });
 
+//get Applicants 
+app.get('/api/getApplicants', function(req, res){
+    applicant.find( function(err, result){
+        if (err){
+            res.send(err);
+            return;
+        }
+        res.json(result);
+    });
+});
 //get List of Applicant Id's that match with specified JobId - Andrew
 app.get('/api/getApplicants/:jobId',function (req,res)
 {
@@ -397,7 +410,7 @@ app.delete('/api/deleteJobPosting/', function(req, res) {
     });
 });
 
-//delete user by userId -- Isaac
+//Delete user by userId - Isaac
 app.delete('/api/deleteUser/', function(req, res){
     var _userId = req.body._userId;
     var deleteUser = {_userId};
