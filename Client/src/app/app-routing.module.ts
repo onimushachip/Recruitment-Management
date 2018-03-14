@@ -7,12 +7,14 @@ import { ApplicantComponent } from './applicant/applicant.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { EditJobComponent } from './edit-job/edit-job.component';
+import { ApplicantSearchComponent } from './applicant-search/applicant-search.component';
 
 const routes : Routes = 
 [
   {path : 'login', component : LoginComponent},
   {path : 'home', component : HomeComponent},
   {path : 'applicant', component : ApplicantComponent},
+  {path : 'applicantS', component : ApplicantSearchComponent},
   {path : 'job', component : EditJobComponent},
   {path : '', component : WelcomeComponent},
   {path : '**', component : NotFoundComponent}

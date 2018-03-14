@@ -22,6 +22,16 @@ private readonly ROOTIP: String = "http://localhost:3000";
     return res;
   }
 
+  getApplicantsFirstName(firstN){
+    return this._http.get('http://localhost:3000/api/applicants/searchFirstName/' + firstN)
+        .map(res => res.json());
+  }
+
+  getApplicantsLastName(firstL){
+    return this._http.get('http://localhost:3000/api/applicants/searchLastName/' + firstL)
+        .map(res => res.json());
+  }
+
 }
 
 
