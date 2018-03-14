@@ -13,6 +13,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { EditJobComponent } from './edit-job/edit-job.component';
 import { ApiService } from './api.service';
+import { ApplicantSearchComponent } from './applicant-search/applicant-search.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ApiService } from './api.service';
     ApplicantComponent,
     NotFoundComponent,
     WelcomeComponent,
-    EditJobComponent
+    EditJobComponent,
+    ApplicantSearchComponent
   ],
   imports: [
     BrowserModule,
