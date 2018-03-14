@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-job.component.css']
 })
 export class EditJobComponent implements OnInit {
-  jobID : String = "1";
+  jobID : String = "";
   jobInfo : Object = {"jobTitle":"Programmer","recruiterUserId":"0000"};
   constructor() {}
   findJob()
