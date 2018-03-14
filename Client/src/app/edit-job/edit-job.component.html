@@ -4,14 +4,14 @@
   <table>
     <tr>
       <th>Job ID:</th>
-      <td><input #jobId [jobId] = "jobId.value"></td>
+      <td><input [(value)] ='jobID'></td>
       <td><input type = "button" (click) = "findJob()" value = "Search"></td>
     </tr><tr></tr><tr>
       <th>Job Title:</th>
-      <td>{{jobInfo.jobTitle}}</td>
+      <td>{{jobInfo?.jobTitle}}</td>
     </tr><tr>
       <th>Recruiter Id:</th>
-      <td>{{jobInfo.recruiterUserId}}</td>
+      <td>{{jobInfo?.recruiterUserId}}</td>
     </tr><tr>
       <th>Approval Status:</th>
       <td></td>

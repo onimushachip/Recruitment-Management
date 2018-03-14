@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { ApplicantComponent } from './applicant/applicant.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-
+import { EditJobComponent } from './edit-job/edit-job.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     HomeComponent,
     ApplicantComponent,
     NotFoundComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    EditJobComponent
   ],
   imports: [
     BrowserModule,
