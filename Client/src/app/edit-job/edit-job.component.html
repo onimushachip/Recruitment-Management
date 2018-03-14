@@ -1,0 +1,25 @@
+
+  <h1>Edit Job</h1>
+
+  <table>
+    <tr>
+      <th>Job ID:</th>
+      <td><input #jobId [jobId] = "jobId.value"></td>
+      <td><input type = "button" (click) = "findJob()" value = "Search"></td>
+    </tr><tr></tr><tr>
+      <th>Job Title:</th>
+      <td>{{jobInfo.jobTitle}}</td>
+    </tr><tr>
+      <th>Recruiter Id:</th>
+      <td>{{jobInfo.recruiterUserId}}</td>
+    </tr><tr>
+      <th>Approval Status:</th>
+      <td></td>
+    </tr><tr>
+      <th>Experience:</th>
+      <td></td>
+    </tr><tr>
+      <th>Skills:</th>
+      <td></td>
+    </tr>
+  </table>
