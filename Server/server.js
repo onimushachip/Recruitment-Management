@@ -47,7 +47,7 @@ var jobPostingInfo = connection.model("JobPostingInfo", Schema({
     jobTitle: String,
     recruiterUserId: String,
     approval: String,
-    exprience: Number,
+    experience: Number,
     skills: []
 },
 {
@@ -211,7 +211,7 @@ app.post('/api/addJobPosting', function(req, res){
     });
 });
 
-//Add a user to the appicant collection - Isaac
+//Add a user to the appicant collection - Thierno
 app.post('/api/addApplicant', function(req, res){
     applicant.create(req.body, function(err, appli){
         if (err) {
