@@ -8,6 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { EditJobComponent } from './edit-job/edit-job.component';
 import { ApplicantSearchComponent } from './applicant-search/applicant-search.component';
+import { AddApplicantComponent } from './add-applicant/add-applicant.component';
 
 const routes : Routes = 
 [
@@ -15,6 +16,7 @@ const routes : Routes =
   {path : 'home', component : HomeComponent},
   {path : 'applicant', component : ApplicantComponent},
   {path : 'applicantS', component : ApplicantSearchComponent},
+  {path : 'addApplicant', component : AddApplicantComponent},
   {path : 'job', component : EditJobComponent},
   {path : '', component : WelcomeComponent},
   {path : '**', component : NotFoundComponent}

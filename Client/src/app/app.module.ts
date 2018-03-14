@@ -14,6 +14,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { EditJobComponent } from './edit-job/edit-job.component';
 import { ApiService } from './api.service';
 import { ApplicantSearchComponent } from './applicant-search/applicant-search.component';
+import { AddApplicantComponent } from './add-applicant/add-applicant.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ApplicantSearchComponent } from './applicant-search/applicant-search.co
     NotFoundComponent,
     WelcomeComponent,
     EditJobComponent,
-    ApplicantSearchComponent
+    ApplicantSearchComponent,
+    AddApplicantComponent
   ],
   imports: [
     BrowserModule,

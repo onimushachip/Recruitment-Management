@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router'
 
 import { IApplicant } from '../data-modules/applicant';
 import { ApiService } from '../api.service';
@@ -10,11 +11,14 @@ import { ApiService } from '../api.service';
 })
 export class ApplicantComponent implements OnInit {
   applicants: IApplicant [];
-  constructor(private service: ApiService ) { }
+  constructor(private service: ApiService, private route: Router ) { }
 
   ngOnInit() {
     this.service.getApplicants()
                 .subscribe((applicantData)=>this.applicants = applicantData);
         
+  }
+  addApplicant(): void{
+   this.route.navigate(['/addApplicant']);
   }
 }

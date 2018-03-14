@@ -3,7 +3,7 @@
         <div class="navbar-header">
             <a routerLink="" class="navbar-brand">someText</a>
         </div>
-        <form class="navbar-form navbar-right" action="/action_page.php">          
+        <form class="navbar-form navbar-right" >          
             
             <select class="form-control">
                 <option value="FirstName">First Name</option>
@@ -15,7 +15,7 @@
             </div>
             <button type="submit" class="btn btn-default">
                     <span class="glyphicon glyphicon-search"></span> Search</button>
-            <button class="btn btn-default">New</button>
+            <button class="btn btn-default"(click)="addApplicant()">New</button>
           </form>
     </div>
 </nav>
