@@ -11,11 +11,11 @@ import { IApplicant } from './data-modules/applicant';
 
 @Injectable()
 export class ApiService {
-
+private readonly ROOTIP: String = "http://localhost:3000";
   constructor(private _http: Http) { }
 
   getApplicants(): Observable<IApplicant[]> {
-    var url = "http://localhost:3000/api/getApplicants";
+    var url = this.ROOTIP+"/api/getApplicants";
     var res: Observable<IApplicant[]> =
     this._http.get(url)
       .map((response: Response) => <IApplicant[]>response.json());
