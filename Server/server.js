@@ -337,6 +337,18 @@ app.get('/api/getApplicants', function(req, res){
         res.json(result);
     });
 });
+
+//get Jobs 
+app.get('/api/getJobs', function(req, res){
+    jobPostingInfo.find(function(err, result){
+        if (err){
+            res.send(err);
+            return;
+        }
+        res.json(result);
+    });
+});
+
 //get List of Applicant Id's that match with specified JobId - Andrew
 app.get('/api/getApplicants/:jobId',function (req,res)
 {

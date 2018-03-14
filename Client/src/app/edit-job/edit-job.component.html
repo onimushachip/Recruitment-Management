@@ -1,25 +1,51 @@
 
-  <h1>Edit Job</h1>
-
-  <table>
-    <tr>
-      <th>Job ID:</th>
-      <td><input [(value)] ='jobID'></td>
-      <td><input type = "button" (click) = "findJob()" value = "Search"></td>
-    </tr><tr></tr><tr>
-      <th>Job Title:</th>
-      <td>{{jobInfo?.jobTitle}}</td>
-    </tr><tr>
-      <th>Recruiter Id:</th>
-      <td>{{jobInfo?.recruiterUserId}}</td>
-    </tr><tr>
-      <th>Approval Status:</th>
-      <td></td>
-    </tr><tr>
-      <th>Experience:</th>
-      <td></td>
-    </tr><tr>
-      <th>Skills:</th>
-      <td></td>
-    </tr>
-  </table>
+<div class = "container">
+  <form class = "form-horizontal">
+    <div class = "form-group">
+      <div class = "col-sm-offset-5 col-sm-2">
+        <h1>Edit Job</h1>
+      </div>
+    </div>
+    <div class = "form-group">
+      <label class = "control-label col-sm-offset-1 col-sm-2">Job ID:</label>
+      <div class = "col-sm-6">
+        <input class = "form-control"[(value)] ='jobID'>
+      </div>
+    </div>
+    <div class = "form-group">
+      <label class = "control-label col-sm-offset-1 col-sm-2">Job Title:</label>
+      <div class = "col-sm-6">
+        <input class = "form-control" value ="{{jobInfo?.jobTitle}}">
+      </div>
+    </div>
+    <div class = "form-group">
+      <label class = "control-label col-sm-offset-1 col-sm-2">Recruiter Id:</label>
+      <div class = "col-sm-6">
+        <input class = "form-control" value = "{{jobInfo?.recruiterUserId}}">
+      </div>
+    </div>
+    <div class = "form-group">
+      <label class = "control-label col-sm-offset-1 col-sm-2">Approval Status:</label>
+      <div class = "col-sm-6">
+        <input class = "form-control" value = "{{jobInfo?.approval}}">
+      </div>
+    </div>
+    <div class = "form-group">
+      <label class = "control-label col-sm-offset-1 col-sm-2">Experience:</label>
+      <div class = "col-sm-6">
+        <input class = "form-control" value = "{{jobInfo?.experience}}">
+      </div>
+    </div>
+    <div class = "form-group">
+      <label class = "control-label col-sm-offset-1 col-sm-2">Skills:</label>
+      <div class = "col-sm-6">
+        <input class = "form-control" value = "{{jobInfo?.skills}}">
+      </div>
+    </div>
+    <div class = "form-group">
+      <div class = "col-sm-offset-3 col-sm-2">
+        <button type = "submit" class = "btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

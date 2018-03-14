@@ -7,6 +7,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 //Import the Applicant class from data-modules
 import { IApplicant } from './data-modules/applicant';
+//Import the JobInfo class from data-modules
+import { IJobInfo } from './data-modules/job';
 
 
 @Injectable()
@@ -19,6 +21,20 @@ private readonly ROOTIP: String = "http://localhost:3000";
     var res: Observable<IApplicant[]> =
     this._http.get(url)
       .map((response: Response) => <IApplicant[]>response.json());
+    return res;
+  }
+  getJobInfo(id:String): Observable<IJobInfo> {
+    var url = this.ROOTIP+"/api/getJobById/"+id;
+    var res: Observable<IJobInfo> =
+    this._http.get(url)
+      .map((response: Response) => <IJobInfo>response.json());
+    return res;
+  }
+  getJobs(): Observable<IJobInfo[]> {
+    var url = this.ROOTIP+"/api/getJobs/";
+    var res: Observable<IJobInfo[]> =
+    this._http.get(url)
+      .map((response: Response) => <IJobInfo[]>response.json());
     return res;
   }
 

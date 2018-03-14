@@ -1,0 +1,22 @@
+  <div class="container">
+  <table class="table">
+    <tr scope="row">
+      <th scope="col">Job ID</th>
+      <th scope="col">Job Code</th>
+      <th scope="col">Job Title</th>
+      <th scope="col">Recruiter ID</th>
+      <th scope="col">Manager Approval</th>
+      <th scope="col">Experience</th>
+      <th scope="col">Skills</th>
+    </tr>
+    <tr scope = "row" *ngFor = "let job of jobs">
+        <td scope="col"><a [routerLink] = "['editJob', job._id]">{{job._id}}</a></td>
+        <td scope="col">{{job._jobCode}}</td>
+        <td scope="col">{{job.jobTitle}}</td>
+        <td scope="col">{{job.recruiterUserId}}</td>
+        <td scope="col">{{job.approval}}</td>
+        <td scope="col">{{job.experience}}</td>
+        <td scope="col">{{job.skills}}</td>
+    </tr>
+  </table>
+</div>
