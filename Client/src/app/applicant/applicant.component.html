@@ -1,3 +1,19 @@
 <p>
   applicant works!
 </p>
+<table class="table">
+  <thead>
+      <tr>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Email</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr scope="row" *ngFor="let l of applicants">
+          <td scope="col">{{l.firstName}}</td>
+          <td scope="col">{{l.lastName}}</td>
+          <td scope="col">{{l.email}}</td>
+      </tr>
+  </tbody>
+</table>
