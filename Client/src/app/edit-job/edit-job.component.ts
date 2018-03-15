@@ -25,7 +25,7 @@ export class EditJobComponent implements OnInit {
   ngOnInit() 
   {
     this.activRoute.params.subscribe((params)=> {this.jobInfo._id = params['jobID'] });
-    this.apiService.getJobInfo(this.jobInfo._id).subscribe((data) =>{ this.jobInfo = data; console.log(this.jobInfo.skills)});
+    this.apiService.getJobById(this.jobInfo._id).subscribe((data) =>{ this.jobInfo = data; console.log(this.jobInfo.skills)});
   }
 
 }

@@ -137,7 +137,7 @@ app.get('/api/getJobById/:id',function(req,res)
         res.json(job);
     });
 });
-//Get 10 job postings by Title - Andrew
+//Get job postings by Title - Andrew
 app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
 {
     jobPostingInfo.find(function(err, jobs)
@@ -149,13 +149,11 @@ app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
         }
         var title = req.params.jobTitle.toLowerCase();
         var matchingJobs = [];
-        numJobs = 0;
-        for(i = 0; ((i<jobs.length)&&(numJobs <10));i++)
+        for(i = 0; i<jobs.length;i++)
         {
             if(title === jobs[i].jobTitle.toLowerCase())
             {
                 matchingJobs.push(jobs[i]);
-                numJobs++;
             }
         }
         console.log(matchingJobs);
@@ -278,17 +276,12 @@ app.get('/api/applicants/searchFirstName/:firstName', function(req, res){
         console.log(firstName);
         console.log(firstNameSearch.length);
         var sameFirstName = [];
-        var numFirstName = 0;
         for(var i = 0; i<firstNameSearch.length;i++)
         {
-            if(numFirstName == 10){
-                break;
-            }
             var temp = firstNameSearch[i].firstName;
             if(firstName.toLowerCase() === temp.toLowerCase())
             {
                 sameFirstName.push(firstNameSearch[i]);
-                numFirstName++;
             }
         }
         console.log(sameFirstName);
@@ -309,17 +302,12 @@ app.get('/api/applicants/searchLastName/:lastName', function(req, res){
         console.log(lastName);
         console.log(lastNameSearch.length);
         var sameLastName = [];
-        var numLastName = 0;
         for(var i = 0; i<lastNameSearch.length;i++)
         {
-            if(numLastName == 10){
-                break;
-            }
             var temp = lastNameSearch[i].lastName;
             if(lastName.toLowerCase() === temp.toLowerCase())
             {
                 sameLastName.push(lastNameSearch[i]);
-                numLastName++;
             }
         }
         console.log(sameLastName);

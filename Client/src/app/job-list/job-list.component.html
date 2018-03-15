@@ -1,4 +1,25 @@
-  <div class="container">
+<nav class="navbar navbar-default">
+    <div class="container bg-dark">
+        <div class="navbar-header">
+        </div>
+        <form class="navbar-form navbar-right" >          
+            
+            <select class="form-control" name = "type" [(ngModel)] = "type" >
+                <option value="code">Job Code</option>
+                <option value="title">Title</option>
+            </select>
+
+            <div class="form-group">
+              <input type="text" class="form-control" name = "search" [(ngModel)] = "criteria">
+            </div>
+            <button type="button" class="btn btn-default" (click) = "search()">
+                    <span class="glyphicon glyphicon-search"></span> Search</button>
+            <button class="btn btn-default">New</button>
+          </form>
+    </div>
+</nav>
+
+<div class="container">
   <table class="table">
     <tr scope="row">
       <th scope="col">Job ID</th>
@@ -10,13 +31,14 @@
       <th scope="col">Skills</th>
     </tr>
     <tr scope = "row" *ngFor = "let job of jobs">
-        <td scope="col"><a [routerLink] = "['editJob', job._id]">{{job._id}}</a></td>
+        <td scope="col">{{job._id}}</td>
         <td scope="col">{{job._jobCode}}</td>
         <td scope="col">{{job.jobTitle}}</td>
         <td scope="col">{{job.recruiterUserId}}</td>
         <td scope="col">{{job.approval}}</td>
         <td scope="col">{{job.experience}}</td>
         <td scope="col">{{job.skills}}</td>
+        <td><button type = "button" [routerLink] = "['editJob', job._id]">Edit</button></td>
     </tr>
   </table>
 </div>

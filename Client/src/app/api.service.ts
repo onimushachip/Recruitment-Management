@@ -42,15 +42,23 @@ export class ApiService {
       .map((response: Response) => <IApplicant[]>response.json());
     return res;
   }
-
-  getJobInfo(id:String): Observable<IJobInfo> {
+  //get Job By id -Andrew
+  getJobById(id:String): Observable<IJobInfo> {
     var url = ROOTIP+"/api/getJobById/"+id;
     var res: Observable<IJobInfo> =
     this._http.get(url)
       .map((response: Response) => <IJobInfo>response.json());
     return res;
   }
-
+  //get Job By title -Andrew
+  getJobsByTitle(title:String): Observable<IJobInfo[]> {
+    var url = ROOTIP+"/api/getJobsByTitle/"+title;
+    var res: Observable<IJobInfo[]> =
+    this._http.get(url)
+      .map((response: Response) => <IJobInfo[]>response.json());
+    return res;
+  }
+  //get all Jobs - Andrew
   getJobs(): Observable<IJobInfo[]> {
     var url = ROOTIP+"/api/getJobs/";
     var res: Observable<IJobInfo[]> =
@@ -58,6 +66,7 @@ export class ApiService {
       .map((response: Response) => <IJobInfo[]>response.json());
     return res;
   }
+  //update a job(jobCode dependent) takes an IJobInfo object - Andrew
   updateJob(job : IJobInfo): Observable<IJobInfo>
   {
     var url = ROOTIP+"/api/jobPosting/"+job._jobCode;
