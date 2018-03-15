@@ -22,7 +22,7 @@ const routes : Routes =
   {path : 'applicantS', component : ApplicantSearchComponent},
 
   {path : 'addApplicant', component : AddApplicantComponent},
-  {path : 'register', component : AddUserComponent},
+  {path : 'login/register', component : AddUserComponent},
 
   {path : '', component : WelcomeComponent},
   {path : '**', component : NotFoundComponent}

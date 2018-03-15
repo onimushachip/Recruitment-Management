@@ -17,11 +17,16 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.apiService.getOneUser(this.username).subscribe((data) => this.checkPassword(data));
+    this.apiService.getOneUser(this.username).subscribe((data) => this.checkUserInfo(data, this.apiService));
   }
 
   checkSharedStatus() {
     console.log(this.apiService.checkLoginStatus());
+  }
+
+  checkUserInfo(input: User, apiInput: ApiService) {
+    this.checkPassword(input);
+    this.checkUserType(input);
   }
 
   checkPassword(input: User) {
@@ -33,6 +38,21 @@ export class LoginComponent implements OnInit {
     else {
       console.log("Login failed!");
     }
+  }
+
+  checkUserType(input: User) {
+    console.log(input.userType);
+    if (input.userType === "Manager") {
+      this.apiService.flagManagerType();
+    }
+    else if (input.userType === "Recruiter") {
+      this.apiService.flagRecruiterType();
+    }
+    else {
+      console.log("NOT AUTHORIZED USER TYPE!!!");
+    }
+    var test: String = this.apiService.getUserType();
+    console.log(test);
   }
 
 }

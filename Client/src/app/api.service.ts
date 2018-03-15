@@ -25,10 +25,20 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+//Defining the types of users
+const MANAGERTYPE: String = "Manager";
+const RECRUITERTYPE: String = "Recruiter";
+
 @Injectable()
 export class ApiService {
   //Keeping track of the login status
   private checkLogin: boolean = false;
+
+  //Keeping track of the User Type
+  private userType: String = "";
+
+  //Keeping track of username
+  private username: String = "";
 
   constructor(
     private _http: Http,
@@ -58,6 +68,7 @@ export class ApiService {
       .map((response: Response) => <IJobInfo[]>response.json());
     return res;
   }
+
   updateJob(job : IJobInfo): Observable<IJobInfo>
   {
     var url = ROOTIP+"/api/jobPosting/"+job._jobCode;
@@ -65,6 +76,7 @@ export class ApiService {
       .map((response : Response) => <IJobInfo>response.json());
     return res;
   }
+
   getApplicantsFirstName(firstN){
     return this._http.get('http://localhost:3000/api/applicants/searchFirstName/' + firstN)
         .map(res => res.json());
@@ -80,9 +92,45 @@ export class ApiService {
     this.checkLogin = true;
   }
 
+  flagLogout() {
+    this.checkLogin = false;
+  }
+
   //Getter for Login Status
   checkLoginStatus(): boolean {
     return this.checkLogin;
+  }
+
+  flagRecruiterType(): void {
+    this.userType = "Recruiter";
+  }
+
+  flagManagerType(): void {
+    this.userType = "Manager";
+  }
+
+  getUserType(): String {
+    return this.userType;
+  }
+
+  //Check to see if the user logged is a recruiter
+  checkRecruiterType(): boolean {
+    return (this.userType === RECRUITERTYPE);
+  }
+
+  //Check to see if the user logged is a Manager
+  checkManagerType(): boolean {
+    return (this.userType === MANAGERTYPE);
+  }
+
+  //Setter for username
+  setUsername(input: String): void {
+    this.username = input; 
+  }
+
+  //Getter for username
+  getUsername(): String {
+    return this.username;
   }
 
   //add a parameter to get usernames
@@ -91,6 +139,7 @@ export class ApiService {
 
     return this.httpClient.get<User>(apiUrl);
   }
+
 
 }
 
