@@ -30,10 +30,13 @@
         <input class = "form-control" name = "recId" [(ngModel)] = "jobInfo.recruiterUserId">
       </div>
     </div>
-    <div class = "form-group">
+    <div *ngIf="this.apiService.checkManagerType()" class = "form-group">
       <label class = "control-label col-sm-offset-1 col-sm-2">Approval Status:</label>
       <div class = "col-sm-6">
-        <input class = "form-control" name = "approval" [(ngModel)] = "jobInfo.approval" disabled>
+        <select class = "form-control" name = "approval" [(ngModel)] = "jobInfo.approval">
+          <option selected value="no">Not Approved</option>
+          <option value="yes">Approved</option>
+        </select>
       </div>
     </div>
     <div class = "form-group">
