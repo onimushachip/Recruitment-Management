@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms'
 
 // import http
 import { HttpModule } from '@angular/http';
@@ -37,8 +38,9 @@ import { AddUserComponent } from './add-user/add-user.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    HttpModule
+    HttpModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

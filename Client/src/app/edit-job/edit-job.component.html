@@ -9,42 +9,48 @@
     <div class = "form-group">
       <label class = "control-label col-sm-offset-1 col-sm-2">Job ID:</label>
       <div class = "col-sm-6">
-        <input class = "form-control"[(value)] ='jobID'>
+        <input class = "form-control" name = "id" [(ngModel)] = "jobInfo._id">
+      </div>
+    </div>
+    <div class = "form-group">
+      <label class = "control-label col-sm-offset-1 col-sm-2">Job Code:</label>
+      <div class = "col-sm-6">
+        <input class = "form-control" name = "code" [(ngModel)] = "jobInfo._jobCode">
       </div>
     </div>
     <div class = "form-group">
       <label class = "control-label col-sm-offset-1 col-sm-2">Job Title:</label>
       <div class = "col-sm-6">
-        <input class = "form-control" value ="{{jobInfo?.jobTitle}}">
+        <input class = "form-control" name = "title" [(ngModel)] = "jobInfo.jobTitle">
       </div>
     </div>
     <div class = "form-group">
       <label class = "control-label col-sm-offset-1 col-sm-2">Recruiter Id:</label>
       <div class = "col-sm-6">
-        <input class = "form-control" value = "{{jobInfo?.recruiterUserId}}">
+        <input class = "form-control" name = "recId" [(ngModel)] = "jobInfo.recruiterUserId">
       </div>
     </div>
     <div class = "form-group">
       <label class = "control-label col-sm-offset-1 col-sm-2">Approval Status:</label>
       <div class = "col-sm-6">
-        <input class = "form-control" value = "{{jobInfo?.approval}}">
+        <input class = "form-control" name = "approval" [(ngModel)] = "jobInfo.approval">
       </div>
     </div>
     <div class = "form-group">
       <label class = "control-label col-sm-offset-1 col-sm-2">Experience:</label>
       <div class = "col-sm-6">
-        <input class = "form-control" value = "{{jobInfo?.experience}}">
+        <input class = "form-control" name = "experience" [(ngModel)] = "jobInfo.experience">
       </div>
     </div>
     <div class = "form-group">
       <label class = "control-label col-sm-offset-1 col-sm-2">Skills:</label>
       <div class = "col-sm-6">
-        <input class = "form-control" value = "{{jobInfo?.skills}}">
+        <input class = "form-control" name = "skills" [(ngModel)] = "jobInfo.skills">
       </div>
     </div>
     <div class = "form-group">
       <div class = "col-sm-offset-3 col-sm-2">
-        <button type = "submit" class = "btn btn-default">Submit</button>
+        <button type = "button" class = "btn btn-default" (click) = "update()">Submit</button>
       </div>
     </div>
   </form>
