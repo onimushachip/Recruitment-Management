@@ -18,6 +18,7 @@ import { ApplicantSearchComponent } from './applicant-search/applicant-search.co
 import { AddApplicantComponent } from './add-applicant/add-applicant.component';
 import { JobListComponent } from './job-list/job-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     EditJobComponent,
     ApplicantSearchComponent,
     AddApplicantComponent,
-    JobListComponent
+    JobListComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
