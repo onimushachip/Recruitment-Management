@@ -16,10 +16,15 @@ export class EditJobComponent implements OnInit {
                         "approval": "",
                         "experience": 0,
                         "skills": [] };
-  constructor(private apiService : ApiService, private activRoute : ActivatedRoute) {}
+  constructor(private apiService : ApiService, 
+    private activRoute : ActivatedRoute) {}
   update()
   {
     this.jobInfo.skills = (this.jobInfo.skills).toString().split(',');
+    for(var i = 0;i < this.jobInfo.skills.length;i++)
+    {
+      this.jobInfo.skills[i] = this.jobInfo.skills[i].trim();
+    }
     this.apiService.updateJob(this.jobInfo).subscribe((data)=>console.log(data));
   }
   ngOnInit() 
