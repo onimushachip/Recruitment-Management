@@ -1,0 +1,54 @@
+<p>
+  add-user works!
+</p>
+
+<div>
+  <form>
+    <table>
+      <tr>
+        <td>Username: </td>
+        <td><input type="text" #myUsername></td>
+      </tr>
+      <tr>
+        <td>Password: </td>
+        <td><input type="password" #myPassword></td>
+      </tr>
+      <tr>
+        <td>First Name: </td>
+        <td><input type="text" #myFirstName></td>
+      </tr>
+      <tr>
+        <td>Last Name: </td>
+        <td><input type="text" #myLastName></td>
+      </tr>
+      <tr>
+        <td>Email: </td>
+        <td><input type="text" #myEmail></td>
+      </tr>
+      <tr>
+        <td>User Type: </td>
+        <td>  
+          <select #myUserType>
+            <option selected>Select one</option>
+            <option value="Manager">Manager</option>
+            <option value="Recruiter">Recruiter</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <div>
+    <button (click)="
+      username = myUsername.value;
+      password = myPassword.value;
+      firstName = myFirstName.value;
+      lastName = myLastName.value;
+      email = myEmail.value;
+      userType = myUserType.value;
+      getInputs();
+      checkInputs();
+      sendNewUser();
+    ">Submit</button>
+  </div>
+</div>

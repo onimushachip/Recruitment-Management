@@ -6,9 +6,9 @@
           </div>
           <ul class="nav navbar-nav navbar-right">
               <li *ngIf="this.apiService.checkLoginStatus()"><a routerLink="">Welcome</a></li>
-              <li *ngIf="this.apiService.checkLoginStatus()"><a routerLink="home">Home</a></li>
-              <li *ngIf="this.apiService.checkLoginStatus()"><a routerLink="applicant">Applicant</a></li>
-              <li *ngIf="this.apiService.checkLoginStatus()"><a routerLink="applicantS">Applicant Search</a></li>
+              <li *ngIf="this.apiService.checkLoginStatus() && this.apiService.checkRecruiterType()"><a routerLink="home">Home</a></li>
+              <li *ngIf="this.apiService.checkLoginStatus() && this.apiService.checkRecruiterType()"><a routerLink="applicant">Applicant</a></li>
+              <li *ngIf="this.apiService.checkLoginStatus() && this.apiService.checkRecruiterType()"><a routerLink="applicantS">Applicant Search</a></li>
               <li *ngIf="this.apiService.checkLoginStatus()"><a routerLink="job">Job Postings</a></li>
               <li><a routerLink="login">
                   <span class="glyphicon glyphicon-log-in"></span> Login</a></li>

@@ -10,6 +10,7 @@ import { EditJobComponent } from './edit-job/edit-job.component';
 import { JobListComponent } from './job-list/job-list.component';
 import { ApplicantSearchComponent } from './applicant-search/applicant-search.component';
 import { AddApplicantComponent } from './add-applicant/add-applicant.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 const routes : Routes = 
 [
@@ -21,6 +22,7 @@ const routes : Routes =
   {path : 'applicantS', component : ApplicantSearchComponent},
 
   {path : 'addApplicant', component : AddApplicantComponent},
+  {path : 'login/register', component : AddUserComponent},
 
   {path : '', component : WelcomeComponent},
   {path : '**', component : NotFoundComponent}

@@ -25,10 +25,20 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+//Defining the types of users
+const MANAGERTYPE: String = "Manager";
+const RECRUITERTYPE: String = "Recruiter";
+
 @Injectable()
 export class ApiService {
   //Keeping track of the login status
   private checkLogin: boolean = false;
+
+  //Keeping track of the User Type
+  private userType: String = "";
+
+  //Keeping track of username
+  private username: String = "";
 
   constructor(
     private _http: Http,
@@ -74,6 +84,7 @@ export class ApiService {
       .map((response : Response) => <IJobInfo>response.json());
     return res;
   }
+
   getApplicantsFirstName(firstN){
     return this._http.get('http://localhost:3000/api/applicants/searchFirstName/' + firstN)
         .map(res => res.json());
@@ -84,21 +95,64 @@ export class ApiService {
         .map(res => res.json());
   }
 
-  //Setter for Login Status
+  //Setter for Login Status -- Lam Nguyen
   flagLogin() {
     this.checkLogin = true;
   }
 
-  //Getter for Login Status
+  flagLogout() {
+    this.checkLogin = false;
+  }
+
+  //Getter for Login Status -- Lam Nguyen
   checkLoginStatus(): boolean {
     return this.checkLogin;
   }
 
-  //add a parameter to get usernames
+  flagRecruiterType(): void {
+    this.userType = "Recruiter";
+  }
+
+  flagManagerType(): void {
+    this.userType = "Manager";
+  }
+
+  getUserType(): String {
+    return this.userType;
+  }
+
+  //Check to see if the user logged is a recruiter -- Lam Nguyen
+  checkRecruiterType(): boolean {
+    return (this.userType === RECRUITERTYPE);
+  }
+
+  //Check to see if the user logged is a Manager -- Lam Nguyen
+  checkManagerType(): boolean {
+    return (this.userType === MANAGERTYPE);
+  }
+
+  //Setter for username -- Lam Nguyen
+  setUsername(input: String): void {
+    this.username = input; 
+  }
+
+  //Getter for username -- Lam Nguyen
+  getUsername(): String {
+    return this.username;
+  }
+
+  //Fetch one user from the server -- Lam Nguyen
   getOneUser(userId: String): Observable<User> {
     var apiUrl = ROOTIP + "/api/getUserById/" + userId;
 
     return this.httpClient.get<User>(apiUrl);
+  }
+
+  //Create One User -- Lam Nguyen
+  createOneUser(input: User): Observable<User> {
+    var apiUrl = ROOTIP + "/api/addUserInfo";
+
+    return this.httpClient.post<User>(apiUrl, input, httpOptions);
   }
 
 }
