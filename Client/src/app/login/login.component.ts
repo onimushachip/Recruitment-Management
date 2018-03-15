@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   checkPassword(input: User) {
-    console.log(input.password);
+    // console.log(input.password);
     if (this.password === input.password) {
       console.log("Login Successfully!");
       this.apiService.flagLogin();
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
   }
 
   checkUserType(input: User) {
-    console.log(input.userType);
+    // console.log(input.userType);
     if (input.userType === "Manager") {
       this.apiService.flagManagerType();
     }
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
       console.log("NOT AUTHORIZED USER TYPE!!!");
     }
     var test: String = this.apiService.getUserType();
-    console.log(test);
+    // console.log(test);
   }
 
 }

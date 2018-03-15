@@ -87,7 +87,7 @@ export class ApiService {
         .map(res => res.json());
   }
 
-  //Setter for Login Status
+  //Setter for Login Status -- Lam Nguyen
   flagLogin() {
     this.checkLogin = true;
   }
@@ -96,7 +96,7 @@ export class ApiService {
     this.checkLogin = false;
   }
 
-  //Getter for Login Status
+  //Getter for Login Status -- Lam Nguyen
   checkLoginStatus(): boolean {
     return this.checkLogin;
   }
@@ -113,33 +113,39 @@ export class ApiService {
     return this.userType;
   }
 
-  //Check to see if the user logged is a recruiter
+  //Check to see if the user logged is a recruiter -- Lam Nguyen
   checkRecruiterType(): boolean {
     return (this.userType === RECRUITERTYPE);
   }
 
-  //Check to see if the user logged is a Manager
+  //Check to see if the user logged is a Manager -- Lam Nguyen
   checkManagerType(): boolean {
     return (this.userType === MANAGERTYPE);
   }
 
-  //Setter for username
+  //Setter for username -- Lam Nguyen
   setUsername(input: String): void {
     this.username = input; 
   }
 
-  //Getter for username
+  //Getter for username -- Lam Nguyen
   getUsername(): String {
     return this.username;
   }
 
-  //add a parameter to get usernames
+  //Fetch one user from the server -- Lam Nguyen
   getOneUser(userId: String): Observable<User> {
     var apiUrl = ROOTIP + "/api/getUserById/" + userId;
 
     return this.httpClient.get<User>(apiUrl);
   }
 
+  //Create One User -- Lam Nguyen
+  createOneUser(input: User): Observable<User> {
+    var apiUrl = ROOTIP + "/api/addUserInfo";
+
+    return this.httpClient.post<User>(apiUrl, input, httpOptions);
+  }
 
 }
 
