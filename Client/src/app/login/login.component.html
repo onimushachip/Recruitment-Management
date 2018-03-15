@@ -2,23 +2,27 @@
   login works!
 </p>
 
-<table>
-  <tr>
-    <td>Username: </td>
-    <td><input type="text" #myUsername/></td>
-  </tr>
-  <tr>
-    <td>Password: </td>
-    <td><input type="password" #myPassword/></td>
-  </tr>
-</table>
-
 <div>
-  <button (click)="username = myUsername.value; password = myPassword.value; login();">Login</button>
+  <table>
+    <tr>
+      <td>Username: </td>
+      <td><input type="text" #myUsername/></td>
+    </tr>
+    <tr>
+      <td>Password: </td>
+      <td><input type="password" #myPassword/></td>
+    </tr>
+  </table>
+  
+  <div>
+    <button (click)="username = myUsername.value; password = myPassword.value; login();">Login</button>
+  </div>  
 </div>
 
 <!-- <div>
   <button (click)="checkSharedStatus()">Check Shared Status</button>
 </div> -->
 
-<div></div>
+<div>
+  <button routerLink="register">Register</button>
+</div>
