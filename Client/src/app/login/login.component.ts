@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { User } from '../data-modules/User';
+import {Router} from '@angular/router'
+
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,10 @@ export class LoginComponent implements OnInit {
   private username: String;
   private password: String;
 
-  constructor(private apiService : ApiService) { }
+  constructor(
+    private apiService : ApiService, 
+    private route: Router
+    ) { }
 
   ngOnInit() {
   }
@@ -29,6 +34,7 @@ export class LoginComponent implements OnInit {
     if (this.password === input.password) {
       console.log("Login Successfully!");
       this.apiService.flagLogin();
+      this.route.navigate(['/home']);
     }
     else {
       console.log("Login failed!");
