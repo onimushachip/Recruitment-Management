@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms'
 
 // import http
 import { HttpModule } from '@angular/http';
@@ -34,7 +35,8 @@ import { JobListComponent } from './job-list/job-list.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

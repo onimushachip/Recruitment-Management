@@ -37,7 +37,13 @@ private readonly ROOTIP: String = "http://localhost:3000";
       .map((response: Response) => <IJobInfo[]>response.json());
     return res;
   }
-
+  updateJob(job : IJobInfo): Observable<IJobInfo>
+  {
+    var url = this.ROOTIP+"/api/jobPosting/"+job._jobCode;
+    var res: Observable<IJobInfo> = this._http.put(url, job)
+      .map((response : Response) => <IJobInfo>response.json());
+    return res;
+  }
   getApplicantsFirstName(firstN){
     return this._http.get('http://localhost:3000/api/applicants/searchFirstName/' + firstN)
         .map(res => res.json());
