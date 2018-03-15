@@ -9,29 +9,50 @@ import 'rxjs/add/operator/map'
 import { IApplicant } from './data-modules/applicant';
 //Import the JobInfo class from data-modules
 import { IJobInfo } from './data-modules/job';
+//Import the User class
+import { User } from './data-modules/User';
 
+//Import the Http Modules according to Angular Official Guide
+import { HttpClient, HttpHeaders } from '@angular/common/http'; //
+import { catchError, map, tap } from 'rxjs/operators'; //
+import { Headers } from '@angular/http'; //
+
+//The IP of the API server will be supplied here
+const ROOTIP: String = "http://localhost:3000";
+
+//Specifying the headers for the server to recognize JSON body request
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class ApiService {
-private readonly ROOTIP: String = "http://localhost:3000";
-  constructor(private _http: Http) { }
+  //Keeping track of the login status
+  private checkLogin: boolean = false;
+
+  constructor(
+    private _http: Http,
+    private httpClient: HttpClient
+  ) { }
 
   getApplicants(): Observable<IApplicant[]> {
-    var url = this.ROOTIP+"/api/getApplicants";
+    var url = ROOTIP+"/api/getApplicants";
     var res: Observable<IApplicant[]> =
     this._http.get(url)
       .map((response: Response) => <IApplicant[]>response.json());
     return res;
   }
+
   getJobInfo(id:String): Observable<IJobInfo> {
-    var url = this.ROOTIP+"/api/getJobById/"+id;
+    var url = ROOTIP+"/api/getJobById/"+id;
     var res: Observable<IJobInfo> =
     this._http.get(url)
       .map((response: Response) => <IJobInfo>response.json());
     return res;
   }
+
   getJobs(): Observable<IJobInfo[]> {
-    var url = this.ROOTIP+"/api/getJobs/";
+    var url = ROOTIP+"/api/getJobs/";
     var res: Observable<IJobInfo[]> =
     this._http.get(url)
       .map((response: Response) => <IJobInfo[]>response.json());
@@ -39,7 +60,7 @@ private readonly ROOTIP: String = "http://localhost:3000";
   }
   updateJob(job : IJobInfo): Observable<IJobInfo>
   {
-    var url = this.ROOTIP+"/api/jobPosting/"+job._jobCode;
+    var url = ROOTIP+"/api/jobPosting/"+job._jobCode;
     var res: Observable<IJobInfo> = this._http.put(url, job)
       .map((response : Response) => <IJobInfo>response.json());
     return res;
@@ -52,6 +73,23 @@ private readonly ROOTIP: String = "http://localhost:3000";
   getApplicantsLastName(firstL){
     return this._http.get('http://localhost:3000/api/applicants/searchLastName/' + firstL)
         .map(res => res.json());
+  }
+
+  //Setter for Login Status
+  flagLogin() {
+    this.checkLogin = true;
+  }
+
+  //Getter for Login Status
+  checkLoginStatus(): boolean {
+    return this.checkLogin;
+  }
+
+  //add a parameter to get usernames
+  getOneUser(userId: String): Observable<User> {
+    var apiUrl = ROOTIP + "/api/getUserById/" + userId;
+
+    return this.httpClient.get<User>(apiUrl);
   }
 
 }

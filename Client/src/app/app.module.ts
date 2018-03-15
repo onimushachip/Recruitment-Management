@@ -17,6 +17,7 @@ import { ApiService } from './api.service';
 import { ApplicantSearchComponent } from './applicant-search/applicant-search.component';
 import { AddApplicantComponent } from './add-applicant/add-applicant.component';
 import { JobListComponent } from './job-list/job-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { JobListComponent } from './job-list/job-list.component';
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
