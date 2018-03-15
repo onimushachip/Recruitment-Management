@@ -31,8 +31,8 @@
   </thead>
   <tbody>
       <tr scope="row" *ngFor="let l of applicants">          
-            <td><a [routerLink] = "['editApplicant', l.firstName]" >{{l.firstName}}</a></td>
-            <td><a [routerLink] = "['editApplicant', l._applicantId]">{{l.lastName}}</a></td>
+            <td><a [routerLink] = "['details', l._applicantId]" >{{l.firstName}}</a></td>
+            <td><a [routerLink] = "['details', l._applicantId]">{{l.lastName}}</a></td>
             <td>{{l.email}}</td>
           
           
