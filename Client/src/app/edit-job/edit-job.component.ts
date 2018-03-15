@@ -16,7 +16,8 @@ export class EditJobComponent implements OnInit {
                         "approval": "",
                         "experience": 0,
                         "skills": [] };
-  constructor(private apiService : ApiService, private activRoute : ActivatedRoute) {}
+  constructor(private apiService : ApiService, 
+    private activRoute : ActivatedRoute) {}
   update()
   {
     this.jobInfo.skills = (this.jobInfo.skills).toString().split(',');

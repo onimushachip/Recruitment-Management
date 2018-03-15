@@ -254,9 +254,9 @@ app.post("/api/createDatabase", function(req, res) {
 });
 
 //Find an applicant by id - Isaac
-app.get('/api/applicants/:_applicantId', function(req, res){
+app.get('/api/getApplicant/:_applicantId', function(req, res){
     console.log(req.params._applicantId);
-    applicant.find({_applicantId:req.params._applicantId}, function(err, appli){
+    applicant.findOne({_applicantId:req.params._applicantId}, function(err, appli){
         if(err)
             res.send(err);
         res.json(appli);

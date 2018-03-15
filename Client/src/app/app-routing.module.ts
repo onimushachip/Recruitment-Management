@@ -11,12 +11,15 @@ import { JobListComponent } from './job-list/job-list.component';
 import { ApplicantSearchComponent } from './applicant-search/applicant-search.component';
 import { AddApplicantComponent } from './add-applicant/add-applicant.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { ApplicantDetailComponent } from './applicant-detail/applicant-detail.component';
+
 
 const routes : Routes = 
 [
   {path : 'login', component : LoginComponent},
   {path : 'home', component : HomeComponent},
   {path : 'applicant', component : ApplicantComponent},
+  {path : 'applicant/details/:apId', component : ApplicantDetailComponent},
   {path : 'job', component : JobListComponent},
   {path : 'job/editJob/:jobID', component : EditJobComponent},
   {path : 'applicantS', component : ApplicantSearchComponent},
