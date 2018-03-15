@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
       console.log("Login Successfully!");
       this.apiService.flagLogin();
       this.route.navigate(['/home']);
+      this.apiService.setUsername(input._userId); 
     }
     else {
       console.log("Login failed!");

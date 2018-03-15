@@ -32,15 +32,15 @@ export class AddUserComponent implements OnInit {
     this.newUser._id = this.username;
   }
 
-  // checkInputs() {
-  //   console.log(this.username);
-  //   console.log(this.password);
-  //   console.log(this.firstName);
-  //   console.log(this.lastName);
-  //   console.log(this.email);
-  //   console.log(this.userType);
-  //   console.log(this.newUser._id);
-  // }
+  checkInputs() {
+    console.log(this.username);
+    console.log(this.password);
+    console.log(this.firstName);
+    console.log(this.lastName);
+    console.log(this.email);
+    console.log(this.userType);
+    console.log(this.newUser._id);
+  }
 
   sendNewUser() {
     this.apiService.createOneUser(this.newUser).subscribe((data) => console.log(data));
