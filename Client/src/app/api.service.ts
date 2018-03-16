@@ -142,10 +142,20 @@ export class ApiService {
       .map((response : Response) => <IJobInfo>response.json());
     return res;
   }
-  //delete a job based on id
-  deleteJob(id : String)
+  //delete a job based on jobCode
+  deleteJob(jobCode : String): Observable<IJobInfo>
   {
     var url = ROOTIP+"/api/deleteJobPosting/";
+    let headers = new Headers({ 'Content-Type' : 'application/json' });
+    let options = new RequestOptions({
+        headers: headers,
+        body:{
+          _jobCode : jobCode,
+          recruiterUserId : this.getUsername()
+        }
+      });
+    var res = this._http.delete(url,options).map((response : Response) => <IJobInfo>response.json());
+    return res;
   }
 
   //search applicant by firstName

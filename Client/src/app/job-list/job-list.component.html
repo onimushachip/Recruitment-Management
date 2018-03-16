@@ -15,7 +15,7 @@
               </div>
               <button type="button" class="btn btn-default" (click) = "search()">
                       <span class="glyphicon glyphicon-search"></span> Search</button>
-              <button class="btn btn-default" routerLink="addJob">New</button>
+              <button *ngIf="apiService.checkRecruiterType()" class="btn btn-default" routerLink="addJob">New</button>
             </form>
       </div>
   </nav>

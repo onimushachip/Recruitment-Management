@@ -19,7 +19,7 @@ export class AddUserComponent implements OnInit {
   private newUser: User = new User();
 
   constructor(
-    public apiService: ApiService,
+    private apiService: ApiService,
     private route: Router
   ) { }
 
@@ -50,7 +50,7 @@ export class AddUserComponent implements OnInit {
     this.apiService.createOneUser(this.newUser).subscribe((data) => {
       console.log(data);
       alert("A New User Created!!");
-      this.route.navigate(['/welcome']);
+      this.route.navigate(['/']);
     });
   }  
 

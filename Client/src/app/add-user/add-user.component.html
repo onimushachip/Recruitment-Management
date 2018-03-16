@@ -1,4 +1,4 @@
-<div *ngIf="this.apiService.checkLoginStatus()">
+<div>
   <!-- <form>
     <table>
       <tr>
@@ -79,20 +79,20 @@
             <option value="Recruiter">Recruiter</option>
           </select>
       </div>
-    </div>  
+    </div>
+    
+    <div>
+        <button class="btn btn-default" (click)="
+          username = myUsername.value;
+          password = myPassword.value;
+          firstName = myFirstName.value;
+          lastName = myLastName.value;
+          email = myEmail.value;
+          userType = myUserType.value;
+          getInputs();
+          checkInputs();
+          sendNewUser();
+        ">Submit</button>
+      </div>
   </form>
-
-  <div>
-    <button class="btn btn-default" (click)="
-      username = myUsername.value;
-      password = myPassword.value;
-      firstName = myFirstName.value;
-      lastName = myLastName.value;
-      email = myEmail.value;
-      userType = myUserType.value;
-      getInputs();
-      checkInputs();
-      sendNewUser();
-    ">Submit</button>
-  </div>
 </div>

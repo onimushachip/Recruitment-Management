@@ -30,12 +30,15 @@ export class LoginComponent implements OnInit {
   }
 
   checkUserInfo(input: User, apiInput: ApiService) {
+    if (input == null) {
+      alert("Login failed!!!");
+      return;
+    }
     this.checkPassword(input);
     this.checkUserType(input);
   }
 
   checkPassword(input: User) {
-    // console.log(input.password);
     if (this.password === input.password) {
       console.log("Login Successfully!");
       this.apiService.flagLogin();
@@ -47,7 +50,6 @@ export class LoginComponent implements OnInit {
     else {
       console.log("Login failed!");
       alert("Login Failed!!!");
-      this.route.navigate(['/home']);
     }
   }
 
@@ -61,9 +63,9 @@ export class LoginComponent implements OnInit {
     }
     else {
       console.log("NOT AUTHORIZED USER TYPE!!!");
+      this.apiService.flagLogout();
     }
     var test: String = this.apiService.getUserType();
-    // console.log(test);
   }
 
 }
