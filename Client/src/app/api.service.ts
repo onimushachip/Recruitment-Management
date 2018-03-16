@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 // import Http and response
 import {Http, Response, RequestOptions} from '@angular/http';
 // import observable from reactjs
@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map'
 //Import the Applicant class from data-modules
 import { IApplicant, NewApplicant } from './data-modules/applicant';
 //Import the JobInfo class from data-modules
-import { IJobInfo } from './data-modules/job';
+import { IJobInfo, JobPosting } from './data-modules/job';
 //Import the User class
 import { User } from './data-modules/User';
 
@@ -39,6 +39,10 @@ export class ApiService {
 
   //Keeping track of username
   private username: String = "";
+
+  //Keeping track of the user's first, last names
+  private userFirstName: String = "";
+  private userLastName: String = "";
 
   constructor(
     private _http: Http,
@@ -132,7 +136,7 @@ export class ApiService {
   //update a job(jobCode dependent) takes an IJobInfo object - Andrew
   updateJob(job : IJobInfo): Observable<IJobInfo>
   {
-    var url = ROOTIP+"/api/jobPosting"+job._jobCode;
+    var url = ROOTIP+"/api/jobPosting/"+job._jobCode;
     var res: Observable<IJobInfo> = this._http.put(url, job)
       .map((response : Response) => <IJobInfo>response.json());
     return res;
@@ -175,40 +179,64 @@ export class ApiService {
     return this.userType;
   }
 
-  //Check to see if the user logged is a recruiter -- Lam Nguyen
+  //Check to see if the user logged is a recruiter - Lam Nguyen
   checkRecruiterType(): boolean {
     return (this.userType === RECRUITERTYPE);
   }
 
-  //Check to see if the user logged is a Manager -- Lam Nguyen
+  //Check to see if the user logged is a Manager - Lam Nguyen
   checkManagerType(): boolean {
     return (this.userType === MANAGERTYPE);
   }
 
-  //Setter for username -- Lam Nguyen
+  //Setter for username - Lam Nguyen
   setUsername(input: String): void {
     this.username = input; 
   }
 
-  //Getter for username -- Lam Nguyen
+  //Getter for username - Lam Nguyen
   getUsername(): String {
     return this.username;
   }
 
-  //Fetch one user from the server -- Lam Nguyen
+  //Setters for the user's first, last names - Lam Nguyen
+  setUserFirstname(input: String): void {
+    this.userFirstName = input;
+  } 
+
+  setUserLastName(input: String): void {
+    this.userLastName = input;
+  }
+
+  //Getters for the user's first, last names - Lam Nguyen
+  getUserFirstName(): String {
+    return this.userFirstName;
+  }
+
+  getUserLastName(): String {
+    return this.userLastName;
+  }
+
+  //Fetch one user from the server - Lam Nguyen
   getOneUser(userId: String): Observable<User> {
     var apiUrl = ROOTIP + "/api/getUserById/" + userId;
 
     return this.httpClient.get<User>(apiUrl);
   }
 
-  //Create One User -- Lam Nguyen
+  //Create one User - Lam Nguyen
   createOneUser(input: User): Observable<User> {
     var apiUrl = ROOTIP + "/api/addUserInfo";
 
     return this.httpClient.post<User>(apiUrl, input, httpOptions);
   }
 
+  //Create one Job Posting - Lam Nguyen
+  createOneJobPosting(input: JobPosting): Observable<JobPosting> {
+    var apiUrl = ROOTIP + "/api/addJobPosting";
+
+    return this.httpClient.post<JobPosting>(apiUrl, input, httpOptions);
+  }
 }
 
 

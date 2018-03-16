@@ -30,7 +30,6 @@ export class AddApplicantComponent implements OnInit {
       .subscribe((data)=>{console.log(data);
         this.route.navigate(['/applicant']);});
       //redirto applicant component
-      
   }
   
   /*

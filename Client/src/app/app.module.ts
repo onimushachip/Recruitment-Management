@@ -19,6 +19,7 @@ import { AddApplicantComponent } from './add-applicant/add-applicant.component';
 import { JobListComponent } from './job-list/job-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddUserComponent } from './add-user/add-user.component';
+import { AddJobPostingComponent } from './add-job-posting/add-job-posting.component';
 import { ApplicantDetailComponent } from './applicant-detail/applicant-detail.component';
 import { EditApplicantComponent } from './edit-applicant/edit-applicant.component';
 
@@ -37,7 +38,8 @@ import { EditApplicantComponent } from './edit-applicant/edit-applicant.componen
     JobListComponent,
     AddUserComponent,
     ApplicantDetailComponent,
-    EditApplicantComponent
+    EditApplicantComponent,
+    AddJobPostingComponent
   ],
   imports: [
     BrowserModule,
