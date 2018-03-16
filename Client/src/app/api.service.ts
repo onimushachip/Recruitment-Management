@@ -116,6 +116,7 @@ export class ApiService {
       .map((response: Response) => <IJobInfo>response.json());
     return res;
   }
+  
   //get Job By title -Andrew
   getJobsByTitle(title:String): Observable<IJobInfo[]> {
     var url = ROOTIP+"/api/getJobsByTitle/"+title;
@@ -141,13 +142,17 @@ export class ApiService {
       .map((response : Response) => <IJobInfo>response.json());
     return res;
   }
-
-  
+  //delete a job based on id
+  deleteJob(id : String)
+  {
+    var url = ROOTIP+"/api/deleteJobPosting/";
+  }
+  //Isaac
   getApplicantsFirstName(firstN){
     return this._http.get('http://localhost:3000/api/applicants/searchFirstName/' + firstN)
         .map(res => res.json());
   }
-
+  //Issac
   getApplicantsLastName(firstL){
     return this._http.get('http://localhost:3000/api/applicants/searchLastName/' + firstL)
         .map(res => res.json());
