@@ -165,14 +165,14 @@ app.get('/api/getJobsByTitle/:jobTitle', function(req, res)
 app.delete('/api/removeApplicant', function(req, res){
     var _applicantId = req.body._applicantId;
     var recruiterUserId = req.body.recruiterUserId;   
-
-    applicant.findOne(_applicantId, function(err, appli){
+    console.log("To be removed "+_applicantId);
+    applicant.findOne({_applicantId:req.body._applicantId}, function(err, appli){ //findOne take an object
         if (err) {
             res.send(err);
             return;
         }
         if(appli.recruiterUserId === recruiterUserId){
-            applicant.findOneAndRemove(recruiterUserId, function(err, a){
+            applicant.findOneAndRemove({_applicantId:req.body._applicantId}, function(err, a){
                 if(err)
                     res.send(err);
                 res.json(a);
@@ -180,7 +180,6 @@ app.delete('/api/removeApplicant', function(req, res){
         }else{
             res.send("You are not authorized to remove applicant "+_applicantId);
         }
-
     });
     
 });
