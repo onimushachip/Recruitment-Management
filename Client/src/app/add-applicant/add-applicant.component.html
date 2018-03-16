@@ -1,33 +1,23 @@
 <div *ngIf="apiService.checkLoginStatus()" class="container">
-  <p>Some Text Later</p>
+  <div class="py-5 text-center">
+    <h2>Add a new applicant</h2>
+    <p class="lead">
+        Below is a from that allows you to fill applicant information.
+    </p>
+</div>
   <form class="form-horizontal" action="">
     <div class="form-group">
-      <label class="control-label col-sm-2" for="fname">Fist Name:</label>
+      <label class="control-label col-sm-2" for="fname">First Name:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="fname" placeholder="Enter fisrt name" name="fname"
+        <input type="text" class="form-control" id="fname" placeholder="Enter first name" name="fname"
         [(ngModel)]="newApplicant.firstName">
       </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="email">Years of Experience:</label>
-            <div class="col-sm-10">
-              <select class="form-control" [(ngModel)]="newApplicant.experience" name="experience">
-                <option selected value="">select one</option>
-                <option value="0">&lt;1</option>
-                <option value="1">1 </option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">&gt;5</option>
-              </select>
-            </div>
-      </div>
-      <div class="form-group">
-          <label class="control-label col-sm-2" for="rUserId">Recruiter userID:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="rUserId" placeholder="Enter userId" name="rUserId" disabled
-            [(ngModel)]="newApplicant.recruiterUserId">
-          </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="fname">Last Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="fname" placeholder="Enter last name" name="lname"
+        [(ngModel)]="newApplicant.lastName">
       </div>
     </div>
     <div class="form-group">
@@ -53,12 +43,12 @@
           </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-sm-2" for="rUserId">Recruiter userID:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="rUserId" placeholder="Enter userId" name="rUserId"
-          [(ngModel)]="newApplicant.recruiterUserId">
-        </div>
-    </div>
+      <label class="control-label col-sm-2" for="rUserId">Recruiter userID:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="rUserId" placeholder="Enter userId" name="rUserId" disabled
+        [(ngModel)]="newApplicant.recruiterUserId">
+      </div>
+  </div>
     <div class="form-group">
         <label class="control-label col-sm-2" for="skills">Skills:</label>
         <div class="col-sm-10">
