@@ -12,7 +12,7 @@ export class JobListComponent implements OnInit {
   criteria : String = "";
   jobs : IJobInfo[];
   constructor(
-    public apiService : ApiService
+    private apiService : ApiService
   ) { }
 
   search()
