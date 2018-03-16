@@ -1,9 +1,5 @@
-<p>
-  login works!
-</p>
-
-<div>
-  <table>
+<div class="container">
+  <!-- <table>
     <tr>
       <td>Username: </td>
       <td><input type="text" #myUsername/></td>
@@ -12,10 +8,34 @@
       <td>Password: </td>
       <td><input type="password" #myPassword/></td>
     </tr>
-  </table>
+  </table> -->
+
+  <form class="form-horizontal">
+    <div class="form-group">
+      <div class="control-label col-sm-offset-1 col-sm-2">
+          <h1>Login</h1>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Username: </label>
+      <div class="col-sm-6">
+          <input class="form-control" type="text" #myUsername>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Password: </label>
+      <div class="col-sm-6">
+          <input class="form-control" type="password" #myPassword>
+      </div>
+    </div>
+  </form>
   
-  <div>
-    <button (click)="username = myUsername.value; password = myPassword.value; login();">Login</button>
+  <div class="col-sm-offset-1">
+    <button type="button" class="btn btn-default" (click)="
+    username = myUsername.value; 
+    password = myPassword.value; login();
+    ">Login</button>
+    <button type="button" class="btn btn-default" routerLink="register">Register</button>
   </div>  
 </div>
 
@@ -23,6 +43,6 @@
   <button (click)="checkSharedStatus()">Check Shared Status</button>
 </div> -->
 
-<div>
+<!-- <div>
   <button routerLink="register">Register</button>
-</div>
+</div> -->
