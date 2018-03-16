@@ -8,33 +8,43 @@ import { ApiService } from '../api.service';
   styleUrls: ['./applicant-search.component.css']
 })
 
-export class ApplicantSearchComponent {
+export class ApplicantSearchComponent
+implements OnInit {
 
-  applicants: IApplicant [];
 
-  constructor(private service: ApiService ) { }
 
-  performSearch(searchTermF: HTMLInputElement){
-    console.log("help")
-    console.log(searchTermF);
-    console.log("help2");
-    console.log(searchTermF.value);
+          type : String = "firstName";
+          criteria : String = "";
+          applicants : IApplicant[];
+          constructor(private apiService : ApiService) { }
+        
+          search()
+          {
+            if(this.criteria != "")
+            {
+              for(var i = 0; i < this.applicants.length; i++){
+                console.log(this.applicants);
+              }
+              console.log(this.type);
+              if(this.type === "FirstName")
+                this.apiService.getApplicantsFirstName(this.criteria).subscribe((data) => {this.applicants = []; this.applicants = data;});
+              else if(this.type === "LastName")
+                this.apiService.getApplicantsLastName(this.criteria).subscribe((data) => {this.applicants = data;});
+            }
+            else
+            {
+              this.apiService.getApplicants().subscribe((data) => this.applicants = data);
+            }
+          }
+          ngOnInit()
+          {
+            this.apiService.getApplicants().subscribe((data) => this.applicants = data);
+          }
 
-    this.service.getApplicantsFirstName(searchTermF.value)
-            .subscribe(applicants => {
-                this.applicants = applicants;
-            });
+        }
 
-  }
+      
+ 
 
-  performSearchLast(searchTerm: HTMLInputElement){
-    console.log(searchTerm.value);
 
-    this.service.getApplicantsLastName(searchTerm.value)
-            .subscribe(applicants => {
-                this.applicants = applicants;
-            });
 
-  }
-
-}
