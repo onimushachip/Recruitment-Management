@@ -20,6 +20,7 @@ import { JobListComponent } from './job-list/job-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddUserComponent } from './add-user/add-user.component';
 import { ApplicantDetailComponent } from './applicant-detail/applicant-detail.component';
+import { EditApplicantComponent } from './edit-applicant/edit-applicant.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ApplicantDetailComponent } from './applicant-detail/applicant-detail.co
     AddApplicantComponent,
     JobListComponent,
     AddUserComponent,
-    ApplicantDetailComponent
+    ApplicantDetailComponent,
+    EditApplicantComponent
   ],
   imports: [
     BrowserModule,

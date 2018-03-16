@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewApplicant } from '../data-modules/applicant';
 import { ApiService } from '../api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-applicant',
@@ -9,16 +10,29 @@ import { ApiService } from '../api.service';
 })
 export class AddApplicantComponent implements OnInit {
   private newApplicant: NewApplicant = new NewApplicant();
-  constructor(private apiService: ApiService) { }
+  private userId: String = "user";
+  
+  constructor(
+    private apiService: ApiService,
+    private route: Router
+  ) { }
 
   ngOnInit() {
+    this.userId = this.apiService.getUsername();
+    this.newApplicant.recruiterUserId = this.userId;  
   }
   addApplicant(){
+    
       console.log("Add");
       this.newApplicant.skills = (this.newApplicant.skills).toString().split(',');
       console.log(this.newApplicant.skills);
-      this.apiService.insertApplicant(this.newApplicant).subscribe((data)=>{console.log(data);});
+      this.apiService.insertApplicant(this.newApplicant)
+      .subscribe((data)=>{console.log(data);
+        this.route.navigate(['/applicant']);});
+      //redirto applicant component
+      
   }
+  
   /*
   update()
   {

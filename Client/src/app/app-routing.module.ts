@@ -12,6 +12,7 @@ import { ApplicantSearchComponent } from './applicant-search/applicant-search.co
 import { AddApplicantComponent } from './add-applicant/add-applicant.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { ApplicantDetailComponent } from './applicant-detail/applicant-detail.component';
+import { EditApplicantComponent } from './edit-applicant/edit-applicant.component';
 
 
 const routes : Routes = 
@@ -20,6 +21,7 @@ const routes : Routes =
   {path : 'home', component : HomeComponent},
   {path : 'applicant', component : ApplicantComponent},
   {path : 'applicant/details/:apId', component : ApplicantDetailComponent},
+  {path : 'editApplicant/:apId', component : EditApplicantComponent},
   {path : 'job', component : JobListComponent},
   {path : 'job/editJob/:jobID', component : EditJobComponent},
   {path : 'applicantS', component : ApplicantSearchComponent},
