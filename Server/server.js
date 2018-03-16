@@ -210,7 +210,7 @@ app.post('/api/addJobPosting', function(req, res){
 
 //Add a user to the appicant collection - Thierno
 app.post('/api/addApplicant', function(req, res){
-    applicant.create(req.body, function(err, appli){
+    applicant.create(req.body, function(err, appli){    
         if (err) {
             res.send(err);
             return;

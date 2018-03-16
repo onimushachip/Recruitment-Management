@@ -13,7 +13,7 @@ export class AddApplicantComponent implements OnInit {
   private userId: String = "user";
   
   constructor(
-    public apiService: ApiService,
+    private apiService: ApiService,
     private route: Router
   ) { }
 

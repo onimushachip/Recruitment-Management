@@ -12,7 +12,7 @@ import { ApiService } from '../api.service';
 export class ApplicantComponent implements OnInit {
   applicants: IApplicant [];
   constructor(
-    public service: ApiService, 
+    private service: ApiService, 
     private route: Router 
   ) { }
 
