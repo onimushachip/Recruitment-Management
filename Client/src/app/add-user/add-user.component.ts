@@ -33,13 +33,13 @@ export class AddUserComponent implements OnInit {
   }
 
   checkInputs() {
-    console.log(this.username);
-    console.log(this.password);
-    console.log(this.firstName);
-    console.log(this.lastName);
-    console.log(this.email);
-    console.log(this.userType);
-    console.log(this.newUser._id);
+    // console.log(this.username);
+    // console.log(this.password);
+    // console.log(this.firstName);
+    // console.log(this.lastName);
+    // console.log(this.email);
+    // console.log(this.userType);
+    // console.log(this.newUser._id);
   }
 
   sendNewUser() {

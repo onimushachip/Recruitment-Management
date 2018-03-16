@@ -11,6 +11,7 @@ import { JobListComponent } from './job-list/job-list.component';
 import { ApplicantSearchComponent } from './applicant-search/applicant-search.component';
 import { AddApplicantComponent } from './add-applicant/add-applicant.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { AddJobPostingComponent } from './add-job-posting/add-job-posting.component';
 import { ApplicantDetailComponent } from './applicant-detail/applicant-detail.component';
 
 
@@ -22,6 +23,7 @@ const routes : Routes =
   {path : 'applicant/details/:apId', component : ApplicantDetailComponent},
   {path : 'job', component : JobListComponent},
   {path : 'job/editJob/:jobID', component : EditJobComponent},
+  {path : 'job/addJob', component : AddJobPostingComponent},
   {path : 'applicantS', component : ApplicantSearchComponent},
 
   {path : 'addApplicant', component : AddApplicantComponent},
