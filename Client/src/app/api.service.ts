@@ -83,13 +83,14 @@ export class ApiService {
     return res;
   }
 
-  getJobInfo(id:String): Observable<IJobInfo> {
+  /*getJobInfo(id:String): Observable<IJobInfo> {
     var url = ROOTIP+"/api/getJobById/"+id;
     var res: Observable<IJobInfo> =
     this._http.get(url)
       .map((response: Response) => <IJobInfo>response.json());
     return res;
-  }
+  }*/
+  
   //get Job By title -Andrew
   getJobsByTitle(title:String): Observable<IJobInfo[]> {
     var url = ROOTIP+"/api/getJobsByTitle/"+title;
