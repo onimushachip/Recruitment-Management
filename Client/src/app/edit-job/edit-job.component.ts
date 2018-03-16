@@ -19,6 +19,18 @@ export class EditJobComponent implements OnInit {
   constructor(
     public apiService : ApiService, 
     private activRoute : ActivatedRoute) {}
+  delete()
+  {
+    if(this.apiService.getUsername() === this.jobInfo.recruiterUserId)
+    {
+      console.log(this.jobInfo._jobCode);
+      this.apiService.deleteJob(this.jobInfo._jobCode).subscribe((data) => console.log(data));
+    }
+    else
+    {
+      alert('Only Job Creator is Authorized to remove this Job');
+    }
+  }
   update()
   {
     this.jobInfo.skills = (this.jobInfo.skills).toString().split(',');
