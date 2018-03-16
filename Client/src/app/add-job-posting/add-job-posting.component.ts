@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JobPosting } from '../data-modules/job';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-job-posting',
@@ -17,7 +18,10 @@ export class AddJobPostingComponent implements OnInit {
 
   private newJobPosting: JobPosting = new JobPosting();
 
-  constructor(public apiService: ApiService) { }
+  constructor(
+    public apiService: ApiService,
+    private route: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -42,6 +46,10 @@ export class AddJobPostingComponent implements OnInit {
 
   sendNewJobPosting(): void {
     this.apiService.createOneJobPosting(this.newJobPosting)
-      .subscribe((res) => {console.log(res);});
+      .subscribe((res) => {
+        console.log(res);
+        alert("Adding A New Job Posting!!!");
+        this.route.navigate(['/job']);
+      });  
   }
 }

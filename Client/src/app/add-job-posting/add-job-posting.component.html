@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="this.apiService.checkLoginStatus()">
   <!-- <form>
     <table>
       <tr>
@@ -69,17 +69,17 @@
             <option value="6">&gt;5 years</option>
           </select>
         </div>
-      </div>  
+      </div>
+      
+      <div>
+          <button class="btn btn-default" (click)="
+            jobCode = myJobCode.value;
+            jobTitle = myJobTitle.value;
+            skills = mySkills.value;
+            experience = myExperience.value;
+            getInputs();
+            sendNewJobPosting();
+          ">Submit</button>
+        </div>
     </form>  
-
-  <div>
-    <button class="btn btn-default" (click)="
-      jobCode = myJobCode.value;
-      jobTitle = myJobTitle.value;
-      skills = mySkills.value;
-      experience = myExperience.value;
-      getInputs();
-      sendNewJobPosting();
-    ">Submit</button>
-  </div>
 </div>

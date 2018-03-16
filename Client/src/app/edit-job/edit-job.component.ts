@@ -16,7 +16,8 @@ export class EditJobComponent implements OnInit {
                         "approval": "",
                         "experience": 0,
                         "skills": [] };
-  constructor(private apiService : ApiService, 
+  constructor(
+    public apiService : ApiService, 
     private activRoute : ActivatedRoute) {}
   update()
   {

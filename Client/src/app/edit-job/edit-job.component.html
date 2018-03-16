@@ -1,5 +1,4 @@
-
-<div class = "container">
+<div *ngIf="this.apiService.checkLoginStatus()" class = "container">
   <form class = "form-horizontal">
     <div class = "form-group">
       <div class = "col-sm-offset-5 col-sm-2">

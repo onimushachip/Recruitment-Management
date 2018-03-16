@@ -9,7 +9,9 @@ import { ApiService } from '../api.service';
 })
 export class AddApplicantComponent implements OnInit {
   private newApplicant: NewApplicant = new NewApplicant();
-  constructor(private apiService: ApiService) { }
+  constructor(
+    public apiService: ApiService,
+  ) { }
 
   ngOnInit() {
   }

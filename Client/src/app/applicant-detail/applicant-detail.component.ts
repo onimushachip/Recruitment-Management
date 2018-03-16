@@ -12,7 +12,7 @@ export class ApplicantDetailComponent implements OnInit {
   private apId: number;
   test: String = "TEst Way";
   constructor(
-    private apiService: ApiService,
+    public apiService: ApiService,
     private activeRoute: ActivatedRoute
   ) { }
 

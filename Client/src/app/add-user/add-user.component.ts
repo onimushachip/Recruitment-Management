@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../data-modules/User';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -17,7 +18,10 @@ export class AddUserComponent implements OnInit {
 
   private newUser: User = new User();
 
-  constructor(private apiService: ApiService) { }
+  constructor(
+    public apiService: ApiService,
+    private route: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -43,7 +47,11 @@ export class AddUserComponent implements OnInit {
   }
 
   sendNewUser() {
-    this.apiService.createOneUser(this.newUser).subscribe((data) => console.log(data));
-  }
+    this.apiService.createOneUser(this.newUser).subscribe((data) => {
+      console.log(data);
+      alert("A New User Created!!");
+      this.route.navigate(['/welcome']);
+    });
+  }  
 
 }
