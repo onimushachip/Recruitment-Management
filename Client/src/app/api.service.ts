@@ -110,7 +110,7 @@ export class ApiService {
   //update a job(jobCode dependent) takes an IJobInfo object - Andrew
   updateJob(job : IJobInfo): Observable<IJobInfo>
   {
-    var url = ROOTIP+"/api/jobPosting"+job._jobCode;
+    var url = ROOTIP+"/api/jobPosting/"+job._jobCode;
     var res: Observable<IJobInfo> = this._http.put(url, job)
       .map((response : Response) => <IJobInfo>response.json());
     return res;
