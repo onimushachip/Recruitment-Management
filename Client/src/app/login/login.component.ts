@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { User } from '../data-modules/User';
-import {Router} from '@angular/router'
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -39,13 +39,15 @@ export class LoginComponent implements OnInit {
     if (this.password === input.password) {
       console.log("Login Successfully!");
       this.apiService.flagLogin();
-      this.route.navigate(['/home']);
       this.apiService.setUsername(input._userId);
       this.apiService.setUserFirstname(input.firstName);
-      this.apiService.setUserLastName(input.lastName); 
+      this.apiService.setUserLastName(input.lastName);
+      this.route.navigate(['/home']); 
     }
     else {
       console.log("Login failed!");
+      alert("Login Failed!!!");
+      this.route.navigate(['/home']);
     }
   }
 

@@ -13,6 +13,7 @@ import { AddApplicantComponent } from './add-applicant/add-applicant.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AddJobPostingComponent } from './add-job-posting/add-job-posting.component';
 import { ApplicantDetailComponent } from './applicant-detail/applicant-detail.component';
+import { EditApplicantComponent } from './edit-applicant/edit-applicant.component';
 
 
 const routes : Routes = 
@@ -21,6 +22,7 @@ const routes : Routes =
   {path : 'home', component : HomeComponent},
   {path : 'applicant', component : ApplicantComponent},
   {path : 'applicant/details/:apId', component : ApplicantDetailComponent},
+  {path : 'editApplicant/:apId', component : EditApplicantComponent},
   {path : 'job', component : JobListComponent},
   {path : 'job/editJob/:jobID', component : EditJobComponent},
   {path : 'job/addJob', component : AddJobPostingComponent},
@@ -41,4 +43,4 @@ const routes : Routes =
     RouterModule.forRoot(routes) 
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { } 

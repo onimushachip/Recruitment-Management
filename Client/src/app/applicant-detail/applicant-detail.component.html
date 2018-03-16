@@ -1,6 +1,5 @@
-  <div class="container">
-      <div class="py-5 text-center">
-
+<div *ngIf="apiService.checkLoginStatus()" class="container">
+    <div class="py-5 text-center">
           <h2>Applicant Details</h2>
           <p class="lead">
               Below is the applicant information. You can edit or delete the applicant
@@ -55,11 +54,11 @@
                   </div>
                   <div class="panel-footer">
                       <button class="btn btn-sm btn-warning" type="button"
-                                  data-toggle="tooltip"
+                                  data-toggle="tooltip" (click) = "updateApplicant()"
                                   data-original-title="Edit this user"><i class="glyphicon glyphicon-edit"></i>
                       </button>
                       <button class="btn btn-sm btn-danger" type="button"
-                              data-toggle="tooltip"
+                              data-toggle="tooltip" (click) = "deleteApplicant()"
                               data-original-title="Remove this user"><i class="glyphicon glyphicon-remove"></i>
                       </button>
                   </div>

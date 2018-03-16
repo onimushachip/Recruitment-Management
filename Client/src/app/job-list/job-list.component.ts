@@ -11,7 +11,9 @@ export class JobListComponent implements OnInit {
   type : String = "code";
   criteria : String = "";
   jobs : IJobInfo[];
-  constructor(private apiService : ApiService) { }
+  constructor(
+    public apiService : ApiService
+  ) { }
 
   search()
   {

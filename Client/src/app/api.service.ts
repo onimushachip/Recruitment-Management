@@ -1,6 +1,6 @@
 import { Injectable, Input } from '@angular/core';
 // import Http and response
-import {Http, Response} from '@angular/http';
+import {Http, Response, RequestOptions} from '@angular/http';
 // import observable from reactjs
 import { Observable } from 'rxjs/Observable';
 // map 
@@ -49,7 +49,7 @@ export class ApiService {
     private httpClient: HttpClient
   ) { }
 
-  // get applicants 
+  // get applicants -Thierno
   getApplicants(): Observable<IApplicant[]> {
     var url = ROOTIP+"/api/getApplicants";
     var res: Observable<IApplicant[]> =
@@ -66,7 +66,7 @@ export class ApiService {
       .map((response: Response) => <IJobInfo>response.json());
     return res;
   }
-  // insert Applicant
+  // insert Applicant -Thierno
   insertApplicant(applicant: NewApplicant): Observable <IApplicant>
   {
     var url = ROOTIP+"/api/addApplicant/";
@@ -74,7 +74,7 @@ export class ApiService {
     .map((response: Response) => <IApplicant> response.json()); 
     return res;
   }
-  // get applicant by id
+  // get applicant by id -Thierno
   getApplicant(id:number): Observable<IApplicant>{
     var url = ROOTIP+"/api/getApplicant/"+id;
     var res: Observable<IApplicant> =
@@ -83,13 +83,39 @@ export class ApiService {
     return res;
   }
 
-  /*getJobInfo(id:String): Observable<IJobInfo> {
+  //Delelect Applicant - Thierno
+  deleteApplicant(id:number, userId:String):Observable<IApplicant>{
+    var url = ROOTIP+"/api/removeApplicant";
+    let headers = new Headers(
+      { 'Content-Type': 'application/json' }
+    );
+    let options = new RequestOptions(
+      {
+        headers: headers,
+        body:{
+          _applicantId: id,
+          recruiterUserId: userId
+        }
+      }
+    ); // auto from http
+    var res: Observable<IApplicant> =
+    this._http.delete(url, options)
+      .map((response: Response) => <IApplicant>response.json());
+    return res;
+  }
+  //Update applicant -Thierno
+  updateApplicant(applicant: IApplicant): Observable<IApplicant>{
+    var url = ROOTIP+"/api/updateApplicant/"+applicant._applicantId;
+    return this.httpClient.put<IApplicant>(url, applicant, httpOptions);
+  }
+
+  getJobInfo(id:String): Observable<IJobInfo> {
     var url = ROOTIP+"/api/getJobById/"+id;
     var res: Observable<IJobInfo> =
     this._http.get(url)
       .map((response: Response) => <IJobInfo>response.json());
     return res;
-  }*/
+  }
   
   //get Job By title -Andrew
   getJobsByTitle(title:String): Observable<IJobInfo[]> {
