@@ -32,14 +32,15 @@
         <th scope="col">Skills</th>
       </tr>
       <tr scope = "row" *ngFor = "let job of jobs">
-          <td scope="col">{{job._id}}</td>
-          <td scope="col">{{job._jobCode}}</td>
-          <td scope="col">{{job.jobTitle}}</td>
-          <td scope="col">{{job.recruiterUserId}}</td>
-          <td scope="col">{{job.approval}}</td>
-          <td scope="col">{{job.experience}}</td>
-          <td scope="col">{{job.skills}}</td>
-          <td><button type = "button" [routerLink] = "['editJob', job._id]">Edit</button></td>
+          <td *ngIf = "apiService.checkManagerType()||job.approval === 'Approved'" scope="col">{{job._id}}</td>
+          <td *ngIf = "apiService.checkManagerType()||job.approval === 'Approved'" scope="col">{{job._jobCode}}</td>
+          <td *ngIf = "apiService.checkManagerType()||job.approval === 'Approved'" scope="col">{{job.jobTitle}}</td>
+          <td *ngIf = "apiService.checkManagerType()||job.approval === 'Approved'" scope="col">{{job.recruiterUserId}}</td>
+          <td *ngIf = "apiService.checkManagerType()||job.approval === 'Approved'" scope="col">{{job.approval}}</td>
+          <td *ngIf = "apiService.checkManagerType()||job.approval === 'Approved'" scope="col">{{job.experience}}</td>
+          <td *ngIf = "apiService.checkManagerType()||job.approval === 'Approved'" scope="col">{{job.skills}}</td>
+          <td *ngIf = "apiService.checkManagerType()||job.approval === 'Approved'"><button type = "button" [routerLink] = "['editJob', job._id]">Edit</button></td>
+          <td *ngIf = "apiService.checkManagerType()||job.approval === 'Approved'"><button type = "button" [routerLink] = "['jobDetails', job._id]">Details</button></td>
       </tr>
     </table>
   </div>    

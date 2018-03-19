@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { IJobInfo } from '../data-modules/job';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-job',
@@ -18,13 +19,19 @@ export class EditJobComponent implements OnInit {
                         "skills": [] };
   constructor(
     public apiService : ApiService, 
-    private activRoute : ActivatedRoute) {}
+    private activRoute : ActivatedRoute,
+    private route : Router) {}
   delete()
   {
     if(this.apiService.getUsername() === this.jobInfo.recruiterUserId)
     {
       console.log(this.jobInfo._jobCode);
-      this.apiService.deleteJob(this.jobInfo._jobCode).subscribe((data) => console.log(data));
+      if(confirm("Are you sure you want to delete this posting?"))
+      {
+        this.apiService.deleteJob(this.jobInfo._jobCode).subscribe((data) =>{ console.log(data);
+                                                         alert('Job Posting Removed');
+                                                         this.route.navigate(['/job']);});
+      }
     }
     else
     {
@@ -38,7 +45,9 @@ export class EditJobComponent implements OnInit {
     {
       this.jobInfo.skills[i] = this.jobInfo.skills[i].trim();
     }
-    this.apiService.updateJob(this.jobInfo).subscribe((data)=>console.log(data));
+    this.apiService.updateJob(this.jobInfo).subscribe((data)=>{console.log(data),
+                                                               alert('Job Posting Updated');
+                                                               this.route.navigate(['/job']);});
   }
   ngOnInit() 
   {

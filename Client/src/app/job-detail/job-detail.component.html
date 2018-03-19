@@ -1,0 +1,55 @@
+<div *ngIf="apiService.checkLoginStatus()" class="container">
+  <div class="py-5 text-center">
+        <h2>Job Details</h2>
+        <p class="lead">
+            Below is the Job information You can view mathing applicants by clicking the button below.
+        </p>
+    </div>
+    <div class="row user-infos cyruxx">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Job Information</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        
+                        <div class=" col-sm-offset-2 col-md-8 col-lg-8  ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                <tr>
+                                    <th>Job ID:</th>
+                                    <th>{{jobInfo._id}}</th>
+                                </tr>
+                                <tr>
+                                    <td>Title</td>
+                                    <td>{{jobInfo.jobTitle}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Approval:</td>
+                                    <td>{{jobInfo.approval}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Experience</td>
+                                    <td>{{jobInfo.experience}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Skills</td>
+                                    <td>{{jobInfo.skills}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Recruiter</td>
+                                    <td>{{jobInfo.recruiterUserId}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-success col-sm-offset-10" (click) = "showApplicants()" type="button">See Applicants
+                    </button>
+                </div>
+            </div>
+        </div>
+</div>

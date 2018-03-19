@@ -82,7 +82,14 @@ export class ApiService {
       .map((response: Response) => <IApplicant>response.json());
     return res;
   }
-
+  //get applicants that match a job - Andrew
+  matchApplicants(jobId:String): Observable<IApplicant[]>{
+    var url = ROOTIP+"/api/getApplicants/" +jobId;
+    var res: Observable<IApplicant[]>=
+     this._http.get(url)
+       .map((response:Response) => <IApplicant[]>response.json());
+    return res;
+  }
   //Delelect Applicant - Thierno
   deleteApplicant(id:number, userId:String):Observable<IApplicant>{
     var url = ROOTIP+"/api/removeApplicant";
