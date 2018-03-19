@@ -34,8 +34,7 @@ export class ApplicantDetailComponent implements OnInit {
         this.apiService.deleteApplicant( this.applicant._applicantId, userId)
       .subscribe((data)=>{console.log(data); 
         this.route.navigate(['/applicant']);
-      });
-      
+      });      
       }
     }
      else{
@@ -43,10 +42,7 @@ export class ApplicantDetailComponent implements OnInit {
       alert("You are not authorized to delete this applicant");
     }
   }
-
   updateApplicant(){
     this.route.navigate(['editApplicant/'+this.applicant._applicantId]);
   }
-  
-
 }

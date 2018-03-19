@@ -14,7 +14,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { EditJobComponent } from './edit-job/edit-job.component';
 import { ApiService } from './api.service';
-import { ApplicantSearchComponent } from './applicant-search/applicant-search.component';
+
 import { AddApplicantComponent } from './add-applicant/add-applicant.component';
 import { JobListComponent } from './job-list/job-list.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,6 +22,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { AddJobPostingComponent } from './add-job-posting/add-job-posting.component';
 import { ApplicantDetailComponent } from './applicant-detail/applicant-detail.component';
 import { EditApplicantComponent } from './edit-applicant/edit-applicant.component';
+import { JobDetailComponent } from './job-detail/job-detail.component';
 
 @NgModule({
   declarations: [
@@ -33,20 +34,21 @@ import { EditApplicantComponent } from './edit-applicant/edit-applicant.componen
     NotFoundComponent,
     WelcomeComponent,
     EditJobComponent,
-    ApplicantSearchComponent,
     AddApplicantComponent,
     JobListComponent,
     AddUserComponent,
     ApplicantDetailComponent,
     EditApplicantComponent,
-    AddJobPostingComponent
+    AddJobPostingComponent,
+    JobDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

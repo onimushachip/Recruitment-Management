@@ -34,8 +34,8 @@
       <div class = "col-sm-6">
         <select class = "form-control" name = "approval" [(ngModel)] = "jobInfo.approval">
           <option selected value ="Waiting">select one</option>
-          <option value="no">Not Approved</option>
-          <option value="yes">Approved</option>
+          <option value="Not Approved">Not Approved</option>
+          <option value="Approved">Approved</option>
         </select>
       </div>
     </div>
@@ -64,7 +64,7 @@
       <div class = "col-sm-offset-3 col-sm-2">
         <button type = "button" class = "btn btn-default" (click) = "update()">Submit</button>
       </div>
-      <div class = "col-sm-2">
+      <div *ngIf="this.apiService.getUsername() === this.jobInfo.recruiterUserId" class = "col-sm-2">
         <button type = "button" class = "btn btn-default" (click) = "delete()">Delete</button>
       </div>
     </div>
