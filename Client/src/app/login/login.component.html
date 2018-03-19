@@ -1,15 +1,4 @@
 <div class="container">
-  <!-- <table>
-    <tr>
-      <td>Username: </td>
-      <td><input type="text" #myUsername/></td>
-    </tr>
-    <tr>
-      <td>Password: </td>
-      <td><input type="password" #myPassword/></td>
-    </tr>
-  </table> -->
-
   <form class="form-horizontal">
     <div class="form-group">
       <div class="control-label col-sm-offset-1 col-sm-2">
@@ -25,7 +14,12 @@
     <div class="form-group">
       <label class="control-label col-sm-2">Password: </label>
       <div class="col-sm-6">
-          <input class="form-control" type="password" #myPassword>
+          <input class="form-control" type="password" name="passwordField" required #myPassword [(ngModel)]="password" #inputPassword="ngModel">
+          <div *ngIf="inputPassword.invalid && (inputPassword.dirty || inputPassword.touched)" class="alert alert-danger">
+            <div *ngIf="inputPassword.errors.required">
+              Password is required.
+            </div>
+          </div>
       </div>
     </div>
   </form>

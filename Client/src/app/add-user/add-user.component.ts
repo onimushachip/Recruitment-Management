@@ -36,7 +36,7 @@ export class AddUserComponent implements OnInit {
     this.newUser._id = this.username;
   }
 
-  checkInputs() {
+  checkInputs(): boolean {
     // console.log(this.username);
     // console.log(this.password);
     // console.log(this.firstName);
@@ -44,11 +44,51 @@ export class AddUserComponent implements OnInit {
     // console.log(this.email);
     // console.log(this.userType);
     // console.log(this.newUser._id);
+    var valid: boolean = true;
+
+    if (this.username === "") {
+      alert("Username is required!!");
+      valid = false;
+    }
+    
+    if (this.password.length < 6) {
+      alert("Password is required and longer than 5 characters!");
+      valid = false;
+    }
+    
+    if (this.firstName === "") {
+      alert("First Name is required!!");
+      valid = false;
+    }
+
+    if (this.lastName === "") {
+      alert("Last Name is required!!");
+      valid = false;
+    }
+
+    if (this.email === "") {
+      alert("Email is required!!!");
+      valid = false;
+    }
+
+    if (this.userType === "") {
+      alert("User Type is required!!");
+      valid = false;
+    }
+
+    return valid;
   }
 
   sendNewUser() {
+    if (!this.checkInputs()) {
+      return;
+    }
     this.apiService.createOneUser(this.newUser).subscribe((data) => {
       console.log(data);
+      if (data === null) {
+        alert("Failed to create a new user!!!!");
+        return;
+      };
       alert("A New User Created!!");
       this.route.navigate(['/']);
     });

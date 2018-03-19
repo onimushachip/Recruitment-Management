@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.apiService.getOneUser(this.username).subscribe((data) => this.checkUserInfo(data, this.apiService));
+    this.apiService.getOneUser(this.username).subscribe((data) => {
+      this.checkUserInfo(data, this.apiService);
+    });
   }
 
   checkSharedStatus() {

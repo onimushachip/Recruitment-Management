@@ -16,6 +16,7 @@ import { User } from './data-modules/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; //
 import { catchError, map, tap } from 'rxjs/operators'; //
 import { Headers } from '@angular/http'; //
+import { of } from 'rxjs/observable/of';
 
 //The IP of the API server will be supplied here
 const ROOTIP: String = "http://localhost:3000";
@@ -236,14 +237,20 @@ export class ApiService {
   getOneUser(userId: String): Observable<User> {
     var apiUrl = ROOTIP + "/api/getUserById/" + userId;
 
-    return this.httpClient.get<User>(apiUrl);
+    return this.httpClient.get<User>(apiUrl)
+      .pipe(
+        catchError(this.handleError<User>('getOneUser'))
+      );
   }
 
   //Create one User - Lam Nguyen
   createOneUser(input: User): Observable<User> {
     var apiUrl = ROOTIP + "/api/addUserInfo";
 
-    return this.httpClient.post<User>(apiUrl, input, httpOptions);
+    return this.httpClient.post<User>(apiUrl, input, httpOptions)
+    .pipe(
+      catchError(this.handleError<User>('createOneUser'))
+    );
   }
 
   //Create one Job Posting - Lam Nguyen
@@ -251,6 +258,17 @@ export class ApiService {
     var apiUrl = ROOTIP + "/api/addJobPosting";
 
     return this.httpClient.post<JobPosting>(apiUrl, input, httpOptions);
+  }
+
+  //Error Handling Method for http reqests
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // console.log(error);
+
+      console.log(operation + " failed with error message " + error.message);
+
+      return of(result as T);
+    }
   }
 }
 

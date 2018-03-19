@@ -1,36 +1,4 @@
 <div *ngIf="this.apiService.checkLoginStatus()">
-  <!-- <form>
-    <table>
-      <tr>
-        <td>Job Code: </td>
-        <td><input type="text" #myJobCode></td>
-      </tr>
-      <tr>
-        <td>Job Title: </td>
-        <td><input type="text" #myJobTitle></td>
-      </tr>
-      <tr>
-        <td>Skills: </td>
-        <td><input type="text" #mySkills></td>
-      </tr>
-      <tr>
-        <td>Experience: </td>
-        <td>  
-          <select #myExperience>
-            <option selected value="">select one</option>
-            <option value="0">&lt;1 year</option>
-            <option value="1">1 year</option>
-            <option value="2">2 years</option>
-            <option value="3">3 years</option>
-            <option value="4">4 years</option>
-            <option value="5">5 years</option>
-            <option value="6">&gt;5 years</option>
-          </select>
-        </td>
-      </tr>
-    </table>
-  </form> -->
-
   <form class="container">
       <div class="form-group">
         <div>
@@ -40,26 +8,41 @@
       <div class="form-group">
         <div>
           <label class="control-label">Job Code: </label>
-          <input class="form-control" type="text" #myJobCode>
+          <input class="form-control" name="jobCodeField" type="text" required #myJobCode [(ngModel)]="jobCode" #inputJobCode="ngModel">
+          <div *ngIf="inputJobCode.invalid && (inputJobCode.dirty || inputJobCode.touched)" class="alert alert-danger">
+            <div *ngIf="inputJobCode.errors.required">
+              Job Code is required.
+            </div>
+          </div>
         </div>
       </div>
       <div class="form-group">
         <div>
           <label class="control-label">Job Title: </label>
-          <input class="form-control" type="text" #myJobTitle>
+          <input class="form-control" name="jobTitleField" type="text" required #myJobTitle [(ngModel)]="jobTitle" #inputJobTitle="ngModel">
+          <div *ngIf="inputJobTitle.invalid && (inputJobTitle.dirty || inputJobTitle.touched)" class="alert alert-danger">
+            <div *ngIf="inputJobTitle.errors.required">
+              Job Title is required.
+            </div>
+          </div>
         </div>
       </div>
       <div class="form-group">
         <div>
           <label class="control-label">Skills: </label>
-          <input class="form-control" type="text" #mySkills>
+          <input class="form-control" name="skillsField" type="text" required #mySkills [(ngModel)]="skills" #inputSkills="ngModel">
+          <div *ngIf="inputSkills.invalid && (inputSkills.dirty || inputSkills.touched)" class="alert alert-danger">
+            <div *ngIf="inputSkills.errors.required">
+              Please enter skills required.
+            </div>
+          </div>
         </div>
       </div>
       <div class="form-group">
         <div>
           <label class="control-label">Experience: </label>
           <select class="form-control" #myExperience>
-            <option selected value="">select one</option>
+            <option selected>select one</option>
             <option value="0">&lt;1 year</option>
             <option value="1">1 year</option>
             <option value="2">2 years</option>

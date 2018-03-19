@@ -188,11 +188,12 @@ app.delete('/api/removeApplicant', function(req, res){
 app.post('/api/addUserInfo', function(req, res){
     userInfo.create(req.body, function(err, usr){
         if (err) {
-            res.send(err);
+            console.log(err.errmsg);
+            res.send(null);
             return;
         }
         console.log(usr);
-        res.json(usr);
+        res.json("User Created Successfully");
     });
 });
 

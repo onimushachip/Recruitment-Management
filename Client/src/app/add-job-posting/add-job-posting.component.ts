@@ -26,6 +26,32 @@ export class AddJobPostingComponent implements OnInit {
   ngOnInit() {
   }
 
+  checkInput(): boolean {
+    var valid: boolean = true;
+
+    if (this.jobCode === "") {
+      alert("Job Code is required!!");
+      valid = false;
+    }
+
+    if (this.jobTitle === "") {
+      alert("Job Title is required!!!");
+      valid = false;
+    }
+
+    if (this.experience === null) {
+      alert("Experience is required to select!!");
+      valid = false;
+    }
+
+    if (this.skills === "") {
+      alert("A set of skills is required!!!");
+      valid = false;
+    }
+
+    return valid;
+  }
+
   getInputs(): void {
     this.newJobPosting._id = this.jobCode;
     this.newJobPosting._jobCode = this.jobCode;
@@ -45,10 +71,18 @@ export class AddJobPostingComponent implements OnInit {
   }
 
   sendNewJobPosting(): void {
+    if (!this.checkInput()) {
+      return;
+    }
+
     this.apiService.createOneJobPosting(this.newJobPosting)
       .subscribe((res) => {
+        if (res === null) {
+          alert("Failed to add a new Job Posting");
+          return;
+        }
         console.log(res);
-        alert("Adding A New Job Posting!!!");
+        alert("Added A New Job Posting!!!");
         this.route.navigate(['/job']);
       });  
   }
