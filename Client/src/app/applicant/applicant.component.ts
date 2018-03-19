@@ -11,6 +11,8 @@ import { ApiService } from '../api.service';
 })
 export class ApplicantComponent implements OnInit {
   applicants: IApplicant [];
+  private query: String = "";
+  private option: String = "";
   constructor(
     private service: ApiService, 
     private route: Router 
@@ -19,9 +21,29 @@ export class ApplicantComponent implements OnInit {
   ngOnInit() {
     this.service.getApplicants()
                 .subscribe((applicantData)=>this.applicants = applicantData);
-        
+
   }
   addApplicant(): void{
    this.route.navigate(['/addApplicant']);
+  }
+  search()
+  {
+    if(this.query != "")
+    {
+      console.log(this.query);
+      console.log(this.option);
+      if(this.option === "FirstName")
+        this.service.getApplicantsFirstName(this.query)
+        .subscribe((data) => {this.applicants = data; console.log(data);});
+      else if(this.option === "LastName")
+        this.service.getApplicantsLastName(this.query)
+        .subscribe((data) => {this.applicants = data;});
+    }
+    else
+    {
+      console.log("eLSE");
+      this.service.getApplicants()
+      .subscribe((applicantData)=>this.applicants = applicantData);
+    }
   }
 }

@@ -46,7 +46,8 @@ import { EditApplicantComponent } from './edit-applicant/edit-applicant.componen
     AppRoutingModule,
     HttpModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
