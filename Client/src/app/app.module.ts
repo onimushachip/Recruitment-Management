@@ -22,6 +22,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { AddJobPostingComponent } from './add-job-posting/add-job-posting.component';
 import { ApplicantDetailComponent } from './applicant-detail/applicant-detail.component';
 import { EditApplicantComponent } from './edit-applicant/edit-applicant.component';
+import { JobDetailComponent } from './job-detail/job-detail.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EditApplicantComponent } from './edit-applicant/edit-applicant.componen
     AddUserComponent,
     ApplicantDetailComponent,
     EditApplicantComponent,
-    AddJobPostingComponent
+    AddJobPostingComponent,
+    JobDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -14,17 +14,20 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { AddJobPostingComponent } from './add-job-posting/add-job-posting.component';
 import { ApplicantDetailComponent } from './applicant-detail/applicant-detail.component';
 import { EditApplicantComponent } from './edit-applicant/edit-applicant.component';
-
+import { JobDetailComponent } from './job-detail/job-detail.component';
 
 const routes : Routes = 
 [
   {path : 'login', component : LoginComponent},
   {path : 'home', component : HomeComponent},
   {path : 'applicant', component : ApplicantComponent},
+  {path : 'applicant/:jobID', component : ApplicantComponent},
   {path : 'applicant/details/:apId', component : ApplicantDetailComponent},
+  {path : 'applicant/:jobID/details/:apId', component : ApplicantDetailComponent},
   {path : 'editApplicant/:apId', component : EditApplicantComponent},
   {path : 'job', component : JobListComponent},
   {path : 'job/editJob/:jobID', component : EditJobComponent},
+  {path : 'job/jobDetails/:jobID', component : JobDetailComponent},
   {path : 'job/addJob', component : AddJobPostingComponent},
   {path : 'applicantS', component : ApplicantSearchComponent},
 
