@@ -14,7 +14,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { EditJobComponent } from './edit-job/edit-job.component';
 import { ApiService } from './api.service';
-import { ApplicantSearchComponent } from './applicant-search/applicant-search.component';
+
 import { AddApplicantComponent } from './add-applicant/add-applicant.component';
 import { JobListComponent } from './job-list/job-list.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -34,7 +34,6 @@ import { JobDetailComponent } from './job-detail/job-detail.component';
     NotFoundComponent,
     WelcomeComponent,
     EditJobComponent,
-    ApplicantSearchComponent,
     AddApplicantComponent,
     JobListComponent,
     AddUserComponent,

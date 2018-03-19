@@ -8,7 +8,6 @@
             <li *ngIf="apiService.checkLoginStatus()"><a routerLink="">Welcome</a></li>
             <li *ngIf="apiService.checkLoginStatus() && apiService.checkRecruiterType()"><a routerLink="home">Home</a></li>
             <li *ngIf="apiService.checkLoginStatus() && apiService.checkRecruiterType()"><a routerLink="applicant">Applicant</a></li>
-            <li *ngIf="apiService.checkLoginStatus() && apiService.checkRecruiterType()"><a routerLink="applicantS">Applicant Search</a></li>
             <li *ngIf="apiService.checkLoginStatus()"><a routerLink="job">Job Postings</a></li>
             <li>
                 <a routerLink="login">
