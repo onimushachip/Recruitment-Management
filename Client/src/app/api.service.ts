@@ -164,15 +164,23 @@ export class ApiService {
     var res = this._http.delete(url,options).map((response : Response) => <IJobInfo>response.json());
     return res;
   }
-  //Isaac
-  getApplicantsFirstName(firstN){
-    return this._http.get('http://localhost:3000/api/applicants/searchFirstName/' + firstN)
-        .map(res => res.json());
+
+  //search applicant by firstName
+  getApplicantsFirstName(firstN:String): Observable<IApplicant[]> {
+    var url = ROOTIP+"/api/applicants/searchFirstName/"+firstN;
+    var res: Observable<IApplicant[]> =
+    this._http.get(url)
+      .map((response: Response) => <IApplicant[]>response.json());
+    return res;
   }
-  //Issac
-  getApplicantsLastName(firstL){
-    return this._http.get('http://localhost:3000/api/applicants/searchLastName/' + firstL)
-        .map(res => res.json());
+
+  //search applicant by lastName
+  getApplicantsLastName(firstL:String): Observable<IApplicant[]> {
+    var url = ROOTIP+"/api/applicants/searchLastName/"+firstL;
+    var res: Observable<IApplicant[]> =
+    this._http.get(url)
+      .map((response: Response) => <IApplicant[]>response.json());
+    return res;
   }
 
   //Setter for Login Status -- Lam Nguyen

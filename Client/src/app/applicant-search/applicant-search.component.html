@@ -1,43 +1,61 @@
-
 <h1>
-    Applicant Search By Firstname and Lastname
-   </h1>
- <div>
-   <input name="search" #searchTermF (keyup.enter)="performSearch(searchTermF)">
-           
-   <button (click)="performSearch(searchTermF)">Search FirstName</button>
- </div>
- 
- <div>
-     <input name="search" #searchTerm (keyup.enter)="performSearchLast(searchTerm)">
-             
-     <button (click)="performSearchLast(searchTerm)">Search LastName</button>
-   </div>
- 
-   <select class="form-control" id="deviceModel">
-        <option value="First">First Name</option>
-        <option value="Last">Last Name</option>
-        <option *ngFor='let element of category' [selected]="element === nameDevice" [value]="element">{{element}}</option>    
-    </select>
- 
-   <br>
-   
-
-     <div class="container">
-            <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">First name</th>
-                    <th scope="col">Last name</th>
-                    <th scope="col">Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr scope="row" *ngFor="let l of applicants">
-                    <td>{{l.firstName}}</td>
-                    <td>{{l.lastName}}</td>
-                    <td>{{l.email}}</td>
-                </tr>
-            </tbody>
-          </table>
-          </div>
+        Applicant Search By Firstname and Lastname
+       </h1>
+     <div>
+        <nav class="navbar navbar-default">
+            <div class="container bg-dark">
+                <div class="navbar-header">
+                </div>
+                <form class="navbar-form navbar-right" >          
+                    
+                    <select class="form-control" name = "type" [(ngModel)] = "type" >
+                        <option value="FirstName">First Name</option>
+                        <option value="LastName">Last Name</option>
+                    </select>
+        
+                    <div class="form-group">
+                      <input type="text" class="form-control" name = "search" [(ngModel)] = "criteria">
+                    </div>
+                    <button type="button" class="btn btn-default" (click) = "search()">
+                            <span class="glyphicon glyphicon-search"></span> Search</button>
+         
+                  </form>
+            </div>
+        </nav>
+     
+       <br>
+       
+    
+         <div class="container">
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr scope="row" *ngFor="let l of applicants">
+                        <td>{{l.firstName}}</td>
+                        <td>{{l.lastName}}</td>
+                        <td>{{l.email}}</td>
+                    </tr>
+                </tbody>
+              </table>
+              <div class="btn-toolbar" role="toolbar" style="margin: 0;">
+                    <div class="btn-group">
+                         <label style="margin-top:10px">Page {{currentIndex}}/{{pageNumber}}</label>
+                      </div>
+                      <div class="btn-group pull-right">
+                         <ul class="pagination" >
+                            <li [ngClass]="{'disabled': (currentIndex == 1 || pageNumber == 0)}" ><a  (click)="prevPage()" href="#">Prev</a></li>
+                               <li *ngFor="let page of pagesIndex"  [ngClass]="{'active': (currentIndex == page)}">
+                                  <a (click)="setPage(page)" href="#" >{{page}}</a>
+                               </li>
+                            <li [ngClass]="{'disabled': (currentIndex == pageNumber || pageNumber == 0)}" ><a   (click)="nextPage()" href="#">Next</a></li>
+                         </ul>
+                      </div>
+                   </div>
+              </div>
+               
