@@ -15,7 +15,7 @@ export class EditJobComponent implements OnInit {
                         "jobTitle": "",
                         "recruiterUserId": "",
                         "approval": "",
-                        "experience": 0,
+                        "experience": -1,
                         "skills": [] };
   constructor(
     public apiService : ApiService, 
@@ -40,14 +40,21 @@ export class EditJobComponent implements OnInit {
   }
   update()
   {
-    this.jobInfo.skills = (this.jobInfo.skills).toString().split(',');
-    for(var i = 0;i < this.jobInfo.skills.length;i++)
+    console.log(this.jobInfo.skills[0]);
+    if(this.jobInfo._id != "" && this.jobInfo._jobCode != ""&&
+       this.jobInfo.approval != "" && this.jobInfo.experience != -1&&
+       this.jobInfo.jobTitle != "" && this.jobInfo.recruiterUserId != ""&&
+       this.jobInfo.skills[0] != null)
     {
-      this.jobInfo.skills[i] = this.jobInfo.skills[i].trim();
+      this.jobInfo.skills = (this.jobInfo.skills).toString().split(',');
+      for(var i = 0;i < this.jobInfo.skills.length;i++)
+      {
+        this.jobInfo.skills[i] = this.jobInfo.skills[i].trim();
+      }
+      this.apiService.updateJob(this.jobInfo).subscribe((data)=>{console.log(data),
+                                                                alert('Job Posting Updated');
+                                                                this.route.navigate(['/job']);});
     }
-    this.apiService.updateJob(this.jobInfo).subscribe((data)=>{console.log(data),
-                                                               alert('Job Posting Updated');
-                                                               this.route.navigate(['/job']);});
   }
   ngOnInit() 
   {

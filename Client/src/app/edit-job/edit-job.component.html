@@ -20,13 +20,16 @@
     <div class = "form-group">
       <label class = "control-label col-sm-offset-1 col-sm-2">Job Title:</label>
       <div class = "col-sm-6">
-        <input class = "form-control" name = "title" [(ngModel)] = "jobInfo.jobTitle">
+        <input class = "form-control" name = "title" #title = "ngModel" [(ngModel)] = "jobInfo.jobTitle" required [disabled] = "this.apiService.checkManagerType()">
+      </div>
+      <div class="col-sm-2">
+        <span *ngIf="title.invalid && (title.dirty || title.touched)" class="alert-danger">required</span>
       </div>
     </div>
     <div class = "form-group">
       <label class = "control-label col-sm-offset-1 col-sm-2">Recruiter Id:</label>
       <div class = "col-sm-6">
-        <input class = "form-control" name = "recId" [(ngModel)] = "jobInfo.recruiterUserId">
+        <input class = "form-control" name = "recId" [(ngModel)] = "jobInfo.recruiterUserId" disabled>
       </div>
     </div>
     <div *ngIf="this.apiService.checkManagerType()" class = "form-group">
@@ -42,8 +45,8 @@
     <div class = "form-group">
       <label class = "control-label col-sm-offset-1 col-sm-2">Experience:</label>
       <div class = "col-sm-6">
-        <select class="form-control" name = "experience" [(ngModel)] = "jobInfo.experience">
-          <option selected value="">select one</option>
+        <select class="form-control" name = "experience" #exp = "ngModel" [(ngModel)] = "jobInfo.experience" [disabled] = "this.apiService.checkManagerType()">
+          <option selected value = "-1">select one</option>
           <option value="0">&lt;1</option>
           <option value="1">1 </option>
           <option value="2">2</option>
@@ -53,11 +56,17 @@
           <option value="6">&gt;5</option>
         </select>
       </div>
+      <div class="col-sm-2">
+        <span *ngIf="this.jobInfo.experience == -1 && (exp.dirty || exp.touched)" class="alert-danger">required</span>
+      </div>
     </div>
     <div class = "form-group">
       <label class = "control-label col-sm-offset-1 col-sm-2">Skills:</label>
       <div class = "col-sm-6">
-        <input class = "form-control" name = "skills" [(ngModel)] = "jobInfo.skills">
+        <input class = "form-control" name = "skills" #skills = "ngModel" [(ngModel)] = "jobInfo.skills" required [disabled] = "this.apiService.checkManagerType()">
+      </div>
+      <div class="col-sm-2">
+        <span *ngIf="skills.invalid && (skills.dirty || skills.touched)" class="alert-danger">required</span>
       </div>
     </div>
     <div class = "form-group">
