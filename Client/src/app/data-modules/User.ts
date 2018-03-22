@@ -7,3 +7,11 @@ export class User {
   lastName : String;
   userType : String;
 }
+
+export class UserStats{
+  _userId : String;
+  numJobs: number;
+  approved: number;
+  denied: number;
+  waiting: number;
+}

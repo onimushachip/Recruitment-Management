@@ -1,4 +1,41 @@
 <div *ngIf="this.apiService.checkLoginStatus()">
-  <h1>Welcome Back {{ userFirstName }} {{ userLastName }}</h1>
-  <h1>You are logging in as a {{ userType }}</h1>
+  <nav class="navbar navbar-default">
+    <div class="container bg-dark">
+        <div class="navbar-header">
+            <a routerLink="" class="navbar-brand">Dashboard</a>
+        </div>
+    </div>
+  </nav>
+  <div class="py-5 text-center">
+    <p class="lead">
+      Welcome Back {{ userFirstName }} {{ userLastName }}
+    </p>
+    <p class="lead">
+      You are logging in as a {{ userType }}
+    </p>
+    <div class="col-sm-4" class="alert-danger" [innerHtml] = "message"></div>
+  </div>
+
+  <div class="container">
+    <table class="table">
+      <thead>
+          <tr>
+              <th scope="col">Recruiter ID</th>
+              <th scope="col">Jobs Created</th>
+              <th scope="col">Approved</th>
+              <th scope="col">Denied</th>
+              <th scope="col">Waiting</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr scope="row" *ngFor="let ustats of userStats">          
+              <td>{{ustats._userId}}</td>
+              <td>{{ustats.numJobs}}</td>
+              <td>{{ustats.approved}}</td>
+              <td>{{ustats.denied}}</td>
+              <td>{{ustats.waiting}}</td>                  
+          </tr>
+      </tbody>
+    </table>
+  </div> 
 </div>
